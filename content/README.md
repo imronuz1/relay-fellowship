@@ -18,4 +18,4 @@ The build script currently reserves `testimonials.json` for approved quotations.
 
 ## Publishing
 
-The current public site is hosted through Sites. The project ID and static directory are in `.openai/hosting.json`. Rebuilding files locally does not update the public URL until a new site version is deployed.
+The site is hosted from this repository's `main` branch, `/docs` folder, on GitHub Pages. Run `node scripts/build-github-pages.mjs`, then commit and push the updated `docs/` output. The public URL is `https://imronuz1.github.io/relay-fellowship/`.
