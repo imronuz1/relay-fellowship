@@ -16,7 +16,14 @@ const cardEnd=home.indexOf('</div></div></section></div><section class="mx-auto'
 if(cardEnd<0)throw Error('Home hero card boundary was not found');
 const signupCard='<div class="glass-panel float-shadow mt-4 p-5"><div class="text-xs uppercase tracking-widest text-white/50">Your next step</div><div class="mt-2 text-lg font-semibold text-white">Create your Relay profile</div><p class="mt-2 text-sm text-white/70">Sign in securely and save your school details, achievements and your own program essay.</p><a class="mt-4 inline-flex items-center justify-center rounded-full bg-lime px-5 py-3 text-sm font-bold text-navy" href="/register/">Join Relay</a></div>';
 home=home.slice(0,cardStart)+signupCard+home.slice(cardEnd+6);
-home=home.replace('>94<!-- -->%</span>','>Explore</span>').replace('>82<!-- -->%</span>','>Explore</span>');
+const previewStart=home.indexOf('<div class="glass-panel float-shadow p-5">');
+const previewEnd=home.indexOf('<div class="glass-panel float-shadow mt-4 p-5">',previewStart);
+if(previewStart<0||previewEnd<0)throw Error('Home program preview was not found');
+const programPreview='<div class="glass-panel float-shadow p-5"><div class="text-xs uppercase tracking-widest text-white/50">Featured programs</div><p class="mt-2 text-sm text-white/70">Compare the experiences and choose where to begin.</p><div class="mt-5 space-y-3"><a href="/programs/uwc/" class="flex items-center justify-between gap-3 rounded-2xl bg-white/10 p-4"><span><strong class="block text-sm text-white">UWC</strong><span class="text-xs text-white/60">International education</span></span><span class="text-lime">Explore</span></a><a href="/programs/lumiere/" class="flex items-center justify-between gap-3 rounded-2xl bg-white/10 p-4"><span><strong class="block text-sm text-white">Lumiere</strong><span class="text-xs text-white/60">Research mentorship</span></span><span class="text-lime">Explore</span></a></div></div>';
+home=home.slice(0,previewStart)+programPreview+home.slice(previewEnd);
+home=home.replace('Fellowship cohorts open for the next intake','Explore international opportunities');
+home=home.replace('Personalised opportunity matches','Program summaries and official links').replace('Cohort workshops with mentors','A private place for your student profile');
+home=home.replace('Relay Fellowship helps ambitious students discover, prepare for and win places in the world&#x27;s most selective programs.','Relay Fellowship helps ambitious students discover programs and prepare stronger applications.');
 home=home.replace('Program information shown is sample data.','Program details are linked to official sources.');
 home=home.replace(/<meta property="og:image"[^>]*>/g,'').replace(/<meta name="twitter:image"[^>]*>/g,'');
 home=home.replace(/<meta property="og:url"[^>]*>/g,'<meta property="og:url" content="https://imronuz1.github.io/relay-fellowship/">');
