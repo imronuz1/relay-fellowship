@@ -2,7 +2,7 @@
   const menuButton=document.querySelector('button[aria-label="Open menu"]');
   if(menuButton){
     const menu=document.createElement('nav');menu.className='relay-mobile-menu';menu.setAttribute('aria-label','Mobile navigation');
-    menu.innerHTML='<a href="/">Home</a><a href="/opportunities/">Programs</a><a href="/mentors/">Mentors</a><a href="/finalists/">Finalists</a><a href="/achievements/">Achievements</a><a href="/register/">Join Relay</a>';
+    menu.innerHTML='<a href="/">Home</a><a href="/opportunities/">Programs</a><a href="/mentors/">Mentors</a><a href="/finalists/">Finalists</a><a href="/achievements/">Achievements</a><a href="/register/">Register</a>';
     document.body.append(menu);
     menuButton.setAttribute('aria-expanded','false');
     menuButton.addEventListener('click',()=>{const open=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Close menu':'Open menu')});

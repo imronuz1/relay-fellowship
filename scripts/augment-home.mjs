@@ -8,8 +8,9 @@ const firstNav=home.indexOf('<nav class="hidden items-center gap-7 lg:flex">');
 if(firstNav<0)throw Error('Home navigation was not found');
 const navEnd=home.indexOf('</nav>',firstNav);
 if(!home.slice(firstNav,navEnd).includes('href="/register/"')){
-  home=home.slice(0,navEnd)+'<a class="text-sm text-white/70 transition-colors hover:text-white" href="/register/">Join Relay</a>'+home.slice(navEnd);
+  home=home.slice(0,navEnd)+'<a class="text-sm text-white/70 transition-colors hover:text-white" href="/register/">Register</a>'+home.slice(navEnd);
 }
+home=home.replace(/>Join Relay<\/a>/g,'>Register</a>');
 const cardStart=home.indexOf('<div class="glass-panel float-shadow mt-4 p-5">');
 if(cardStart<0)throw Error('Home hero card was not found');
 const cardEnd=home.indexOf('</div></div></section></div><section class="mx-auto',cardStart);
@@ -64,5 +65,6 @@ fs.writeFileSync(mentorsFile,mentors);
 
 const menuFile=path.join(dist,'site.js');
 let menu=fs.readFileSync(menuFile,'utf8');
-if(!menu.includes('href="/register/"'))menu=menu.replace('<a href="/achievements/">Achievements</a>','<a href="/achievements/">Achievements</a><a href="/register/">Join Relay</a>');
+if(!menu.includes('href="/register/"'))menu=menu.replace('<a href="/achievements/">Achievements</a>','<a href="/achievements/">Achievements</a><a href="/register/">Register</a>');
+menu=menu.replace(/>Join Relay<\/a>/g,'>Register</a>');
 fs.writeFileSync(menuFile,menu);

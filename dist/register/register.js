@@ -4,7 +4,7 @@ import { doc, getDoc, getFirestore, serverTimestamp, writeBatch } from 'https://
 import { firebaseConfig } from '../firebase-config.js';
 
 const $ = id => document.getElementById(id);
-const panels = ['setup-pending','auth-panel','email-sent','confirm-email','profile-panel'];
+const panels = ['setup-pending','account-panel','auth-panel','email-sent','confirm-email','profile-panel'];
 const programInfo = {
   uwc: {prompt:'UWC brings students from different backgrounds together for academics, service and shared life. Paste your essay about how you would contribute to that community and what you hope to learn.',url:'https://uwc.org/how-to-apply/'},
   flex: {prompt:'FLEX is a year of study, host-family life and cultural exchange in the United States. Paste your essay about adapting to a new community and sharing your home culture.',url:'https://exchanges.state.gov/non-us/program/future-leaders-exchange'},
@@ -16,10 +16,12 @@ const params = new URLSearchParams(location.search);
 const requestedProgram = params.get('program');
 const emailKey = 'relayEmailForSignIn';
 let auth, db, currentUser;
+let accountMode='signup';
 
 function panel(id){for(const name of panels)$(name).hidden=name!==id;}
 function status(message,error=false){const el=$('status');el.textContent=message;el.classList.toggle('error',error);el.hidden=false;}
 function clearStatus(){$('status').hidden=true;}
+function showAuth(mode){accountMode=mode;$('auth-title').textContent=mode==='signin'?'Sign in':'Sign up';clearStatus();panel('auth-panel');}
 function setBusy(button,busy){button.disabled=busy;button.setAttribute('aria-busy',String(busy));}
 function describeError(error){
   switch(error?.code){
@@ -82,6 +84,9 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
 }else{
   const app=initializeApp(firebaseConfig);
   auth=getAuth(app);db=getFirestore(app);
+  $('choose-sign-up').addEventListener('click',()=>showAuth('signup'));
+  $('choose-sign-in').addEventListener('click',()=>showAuth('signin'));
+  $('back-to-account').addEventListener('click',()=>{clearStatus();panel('account-panel');});
   $('email-form').addEventListener('submit',async event=>{
     event.preventDefault();clearStatus();
     const button=event.currentTarget.querySelector('button');
@@ -96,7 +101,7 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     }catch(error){status(describeError(error),true);}
     finally{setBusy(button,false);}
   });
-  $('change-email').addEventListener('click',()=>{clearStatus();panel('auth-panel');});
+  $('change-email').addEventListener('click',()=>showAuth(accountMode));
   $('confirm-email-form').addEventListener('submit',event=>{event.preventDefault();finishEmail($('confirm-address').value.trim());});
   $('google-button').addEventListener('click',async()=>{
     clearStatus();setBusy($('google-button'),true);
@@ -104,7 +109,7 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     catch(error){status(describeError(error),true);}
     finally{setBusy($('google-button'),false);}
   });
-  $('sign-out').addEventListener('click',async()=>{await signOut(auth);clearStatus();panel('auth-panel');});
+  $('sign-out').addEventListener('click',async()=>{await signOut(auth);clearStatus();panel('account-panel');});
   $('program').addEventListener('change',()=>{updateProgram();loadEssay($('program').value);$('save-success').hidden=true;});
   $('profile-form').addEventListener('submit',async event=>{
     event.preventDefault();clearStatus();$('save-success').hidden=true;
@@ -130,9 +135,9 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     const storedEmail=localStorage.getItem(emailKey);
     if(storedEmail)finishEmail(storedEmail);
     else panel('confirm-email');
-  }else panel('auth-panel');
+  }else panel('account-panel');
   onAuthStateChanged(auth,user=>{
     if(user)showProfile(user);
-    else if(!isSignInWithEmailLink(auth,location.href)&&$('email-sent').hidden)panel('auth-panel');
+    else if(!isSignInWithEmailLink(auth,location.href)&&$('email-sent').hidden&&$('auth-panel').hidden)panel('account-panel');
   });
 }

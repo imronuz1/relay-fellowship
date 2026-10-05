@@ -18,7 +18,7 @@ The Firebase project `relay-fellowship` and its Web app are connected in `dist/f
 
 After changing `firestore.rules`, publish the new version in Firebase Console as well. GitHub Pages only deploys the website files.
 
-Email sign-in sends a link to the student's entered email address. Google sign-in uses a popup. Student profiles and their own essays are saved only after sign-in. Firestore rules restrict each profile to its owner. The site never submits a program application on the student's behalf.
+The registration flow is Register → Open account → Sign up or Sign in → Student questions. Email sign-in sends a link to the student's entered email address. Google sign-in uses a popup. Student profiles and their own essays are saved only after sign-in. Firestore rules restrict each profile to its owner. The site never submits a program application on the student's behalf.
 
 Firebase's web configuration is public client configuration; keep service-account keys and other private credentials out of this repository.
 
