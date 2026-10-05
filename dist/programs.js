@@ -26,3 +26,9 @@ function update(){
 search?.addEventListener('input',update);
 selects.forEach(select=>select.addEventListener('change',update));
 document.querySelector('#clear-filters')?.addEventListener('click',()=>{if(search)search.value='';selects.forEach(x=>x.value='');update();search?.focus()});
+const preset=new URLSearchParams(location.search);
+for(const select of selects){
+  const value=preset.get(select.dataset.filter);
+  if(value&&[...select.options].some(option=>option.value===value))select.value=value;
+}
+update();

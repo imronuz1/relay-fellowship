@@ -25,9 +25,36 @@ home=home.replace('Fellowship cohorts open for the next intake','Explore interna
 home=home.replace('Personalised opportunity matches','Program summaries and official links').replace('Cohort workshops with mentors','A private place for your student profile');
 home=home.replace('Relay Fellowship helps ambitious students discover, prepare for and win places in the world&#x27;s most selective programs.','Relay Fellowship helps ambitious students discover programs and prepare stronger applications.');
 home=home.replace('Program information shown is sample data.','Program details are linked to official sources.');
+const cardDestinations={
+  UWC:'/programs/uwc/',
+  FLEX:'/programs/flex/',
+  Lumiere:'/programs/lumiere/',
+  YYGS:'/programs/yygs/',
+  Fellowships:'/register/',
+  Research:'/opportunities/?type=Research',
+  'Summer programs':'/opportunities/?type=Summer%20Program',
+  Scholarships:'/opportunities/?funding=Fully%20funded'
+};
+if(!home.includes('class="home-program-card')){
+  let converted=0;
+  home=home.replace(/<div class="card-elevated group p-5 transition-transform duration-300 hover:-translate-y-1"><div class="text-2xl">([^<]*)<\/div><div class="mt-4 font-display text-lg font-semibold">([^<]*)<\/div><div class="text-sm text-muted-foreground">([^<]*)<\/div><\/div>/g,(_,icon,name,description)=>{
+    const href=cardDestinations[name];
+    if(!href)throw Error(`No destination for home card ${name}`);
+    converted++;
+    return `<a class="home-program-card card-elevated group p-5 transition-transform duration-300 hover:-translate-y-1" href="${href}" aria-label="Explore ${name}"><span class="block text-2xl" aria-hidden="true">${icon}</span><span class="mt-4 block font-display text-lg font-semibold">${name}</span><span class="block text-sm text-muted-foreground">${description}</span></a>`;
+  });
+  if(converted!==8)throw Error(`Expected 8 home program cards, found ${converted}`);
+}
 home=home.replace(/<meta property="og:image"[^>]*>/g,'').replace(/<meta name="twitter:image"[^>]*>/g,'');
 home=home.replace(/<meta property="og:url"[^>]*>/g,'<meta property="og:url" content="https://imronuz1.github.io/relay-fellowship/">');
 fs.writeFileSync(homeFile,home);
+
+const siteCssFile=path.join(dist,'site.css');
+let siteCss=fs.readFileSync(siteCssFile,'utf8');
+if(!siteCss.includes('.home-program-card{')){
+  siteCss+='\n.home-program-card{display:block;color:inherit;text-decoration:none;cursor:pointer}.home-program-card:hover{transform:translateY(-4px)}.home-program-card:focus-visible{outline:3px solid #a3e635;outline-offset:4px}\n';
+  fs.writeFileSync(siteCssFile,siteCss);
+}
 
 const mentorsFile=path.join(dist,'mentors','index.html');
 let mentors=fs.readFileSync(mentorsFile,'utf8');
