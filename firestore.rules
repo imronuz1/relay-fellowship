@@ -7,12 +7,39 @@ service cloud.firestore {
         && request.auth.token.email_verified == true;
     }
 
+    function validProfile() {
+      return request.resource.data.keys().hasOnly([
+          'email', 'school', 'grade', 'dateOfBirth', 'achievements',
+          'lastProgram', 'updatedAt'
+        ])
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.school is string
+        && request.resource.data.school.size() <= 120
+        && request.resource.data.grade in ['8', '9', '10', '11', '12', 'Other']
+        && request.resource.data.dateOfBirth is string
+        && request.resource.data.dateOfBirth.size() == 10
+        && request.resource.data.achievements is string
+        && request.resource.data.achievements.size() <= 3000
+        && request.resource.data.lastProgram in ['uwc', 'flex', 'lumiere', 'yygs'];
+    }
+
+    function validEssay(programSlug) {
+      return request.resource.data.keys().hasOnly(['programSlug', 'essay', 'updatedAt'])
+        && request.resource.data.programSlug == programSlug
+        && programSlug in ['uwc', 'flex', 'lumiere', 'yygs']
+        && request.resource.data.essay is string
+        && request.resource.data.essay.size() >= 100
+        && request.resource.data.essay.size() <= 12000;
+    }
+
     match /users/{uid} {
-      allow get, create, update, delete: if isOwner(uid);
+      allow get, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid) && validProfile();
       allow list: if false;
 
       match /essays/{programSlug} {
-        allow get, create, update, delete: if isOwner(uid);
+        allow get, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && validEssay(programSlug);
         allow list: if isOwner(uid);
       }
     }
