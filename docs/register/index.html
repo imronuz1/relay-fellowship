@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0d1930">
+  <meta name="description" content="Create your Relay Fellowship profile and save your program essay.">
+  <title>Join Relay Fellowship</title>
+  <link rel="icon" href="/relay-fellowship/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/relay-fellowship/programs.css">
+  <link rel="stylesheet" href="/relay-fellowship/register/register.css">
+</head>
+<body>
+  <header class="topbar"><div class="wrap nav-inner"><a href="/relay-fellowship/" class="brand" aria-label="Relay Fellowship home"><span class="brand-mark">R<span>.</span></span><span>Relay<span class="brand-light"> Fellowship</span></span></a><nav aria-label="Main navigation"><a href="/relay-fellowship/">Home</a><a href="/relay-fellowship/opportunities/">Programs</a><a href="/relay-fellowship/finalists/">Finalists</a><a href="/relay-fellowship/achievements/">Achievements</a></nav><a class="nav-contact" href="/relay-fellowship/register/" aria-current="page">Join Relay</a></div></header>
+  <main class="signup-shell">
+    <div class="wrap signup-grid">
+      <section class="signup-intro" aria-labelledby="signup-title">
+        <p class="kicker light">YOUR RELAY PROFILE</p>
+        <h1 id="signup-title">Your next step starts here<span>.</span></h1>
+        <p>Sign in, tell us about your school experience, and save the essay you wrote for a program. Your profile stays private to your account.</p>
+        <div class="signup-route" aria-label="Registration steps"><div><strong>01</strong><span>Confirm your email or continue with Google</span></div><div><strong>02</strong><span>Complete your student profile</span></div><div><strong>03</strong><span>Save your own program essay</span></div></div>
+        <p class="signup-note">A Relay profile is a preparation space. It does not submit an application to a program.</p>
+      </section>
+      <section class="signup-card" aria-labelledby="form-title">
+        <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+        <div id="setup-pending" class="setup-pending" hidden><h2>Registration is being connected</h2><p>The form is ready. We are connecting secure sign-in and private profile storage before opening registration.</p></div>
+        <div id="auth-panel" hidden>
+          <p class="step-label">STEP 1 OF 2 · SECURE SIGN-IN</p><h2 id="form-title">Create your account</h2><p class="panel-intro">We’ll send a sign-in link to the address you enter. You won’t need a password.</p>
+          <form id="email-form"><label for="email">Email address</label><input id="email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"><button class="signup-primary" type="submit">Send sign-in link</button></form>
+          <div class="auth-divider"><span>or</span></div>
+          <button id="google-button" class="google-button" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.24 5.48-4.72 7.18l7.73 6C44.46 38.03 46.98 31.68 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-3-.76-4.59s.27-3.14.76-4.59l-7.98-6.2C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.95-5.8l-7.73-6c-2.15 1.45-4.92 2.3-8.22 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
+          <p class="privacy-note">We use Firebase Authentication for sign-in. Your email is used to identify your private profile.</p>
+        </div>
+        <div id="email-sent" hidden><p class="step-label">CHECK YOUR INBOX</p><h2>Link sent</h2><p>Open the message we sent to <strong id="sent-address"></strong> and tap the sign-in link. Check spam if you don’t see it.</p><button type="button" class="text-button" id="change-email">Use another email</button></div>
+        <div id="confirm-email" hidden><p class="step-label">ONE MORE STEP</p><h2>Confirm your email</h2><p>Enter the same email address that received the sign-in link.</p><form id="confirm-email-form"><label for="confirm-address">Email address</label><input id="confirm-address" type="email" autocomplete="email" required><button class="signup-primary" type="submit">Finish sign-in</button></form></div>
+        <div id="profile-panel" hidden>
+          <div class="profile-head"><div><p class="step-label">STEP 2 OF 2 · YOUR PROFILE</p><h2>Tell us about you</h2><p id="signed-in-as"></p></div><button type="button" id="sign-out" class="text-button">Sign out</button></div>
+          <form id="profile-form"><div class="field-pair"><div><label for="school">School</label><input id="school" name="school" type="text" autocomplete="organization" required maxlength="120" placeholder="Your school name"></div><div><label for="grade">Grade</label><select id="grade" name="grade" required><option value="">Select grade</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>Other</option></select></div></div>
+            <div class="field-pair"><div><label for="birth-date">Date of birth</label><input id="birth-date" name="birthDate" type="date" required></div><div><label for="program">Program</label><select id="program" name="program" required><option value="">Select program</option><option value="uwc">United World Colleges</option><option value="flex">FLEX</option><option value="lumiere">Lumiere Research Scholar Program</option><option value="yygs">Yale Young Global Scholars</option></select></div></div>
+            <label for="achievements">Achievements</label><textarea id="achievements" name="achievements" rows="4" maxlength="3000" placeholder="Describe projects, awards, service or other work you are proud of." required></textarea>
+            <label for="essay">Your essay</label><p id="essay-prompt" class="essay-prompt">Choose a program to see a relevant essay prompt.</p><textarea id="essay" name="essay" rows="10" minlength="100" maxlength="12000" placeholder="Paste the essay you wrote here. We do not generate or rewrite it." required></textarea><p class="field-hint">Your words, your voice. 100–12,000 characters.</p>
+            <label class="consent-row"><input id="consent" type="checkbox" required><span>I understand this saves a private Relay profile and does not submit an official program application.</span></label>
+            <button class="signup-primary" type="submit" id="save-profile">Save my profile</button>
+          </form>
+          <div id="save-success" class="save-success" hidden><strong>Profile saved.</strong><p>You can return to this page to update your details and essay.</p><a id="official-application" href="/relay-fellowship/opportunities/">Explore the official application</a></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="signup-footer"><div class="wrap"><span>© 2026 Relay Fellowship</span><a href="/relay-fellowship/opportunities/">Explore programs</a></div></footer>
+  <script type="module" src="/relay-fellowship/register/register.js"></script>
+</body>
+</html>

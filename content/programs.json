@@ -1,0 +1,248 @@
+[
+  {
+    "slug": "uwc",
+    "name": "United World Colleges",
+    "shortName": "UWC",
+    "type": "International education",
+    "country": "Global",
+    "location": "18 schools and colleges worldwide",
+    "organizer": "United World Colleges",
+    "field": ["Interdisciplinary", "Leadership", "Service"],
+    "grade": ["10", "11"],
+    "fundingCategory": "Financial aid available",
+    "durationCategory": "Academic year+",
+    "deadlineCategory": "Varies by location",
+    "deadlineDate": null,
+    "deadline": "Set by your national committee; 2027 entry routes are open",
+    "duration": "Two years",
+    "eligibility": "Typically age 16–17 at entry; local criteria vary",
+    "funding": "Need-based scholarships through national committees and eligible pathways; self-funded places also exist",
+    "summary": "A two-year international education that brings students from different countries together to learn, live and act for peace and sustainability.",
+    "tagline": "Live and learn with the world.",
+    "accent": "#27c7aa",
+    "logo": "/media/uwc.svg",
+    "logoAlt": "United World Colleges official logo",
+    "heroImage": "/media/uwc-community.jpg",
+    "heroImageAlt": "UWC students holding flags from different countries",
+    "heroImageCredit": "Image: United World Colleges",
+    "heroImageSource": "https://uwc.org/",
+    "officialUrl": "https://uwc.org/how-to-apply/",
+    "applyUrl": "https://uwc.org/how-to-apply/",
+    "about": [
+      "UWC is a global movement of schools and colleges that uses education to bring young people across cultures, countries and backgrounds. Its two-year International Baccalaureate route combines demanding academics with service, outdoor learning, creativity and shared residential life. Students apply to the movement, often through a volunteer national committee, and may be placed at different UWC schools according to availability and selection.",
+      "The purpose is larger than a diploma. UWC asks students to listen to perspectives unlike their own and turn what they learn into action for peace and a sustainable future. Daily life is intentionally international: lessons, meals, shared rooms, activities and community work become places to practice cooperation.",
+      "Applicants should pay close attention to their route. National committees set local deadlines and assess students in context. More than 80% of students selected through national committees receive financial support based on need, while the Global Selection Programme is a full-fee route. The official application guide explains which route fits each applicant."
+    ],
+    "history": [
+      {"year": "1955", "title": "An idea shaped by cooperation", "text": "Educational pioneer Kurt Hahn was inspired by people who had recently been on opposite sides of war working together. He imagined a school where young people could build understanding across borders."},
+      {"year": "1962", "title": "The first college opens", "text": "UWC Atlantic admitted its first students in Wales, starting the international education movement."},
+      {"year": "1970", "title": "National committees take shape", "text": "Volunteer committees began selecting students locally and widening access to UWC places."},
+      {"year": "Today", "title": "A global network", "text": "UWC reports 18 schools and colleges and more than 85,000 alumni from over 180 countries since 1962."}
+    ],
+    "experiences": [
+      {"icon": "✳", "title": "IB learning", "text": "Study a broad, rigorous pre-university curriculum while learning to connect ideas across subjects."},
+      {"icon": "◉", "title": "A residential community", "text": "Share everyday life with classmates whose languages, beliefs and experiences may be very different from yours."},
+      {"icon": "↗", "title": "Service in action", "text": "Join community action and activities that connect learning to real needs beyond campus."},
+      {"icon": "◎", "title": "International exchange", "text": "Build friendships and perspectives through dialogue, collaboration and living together."}
+    ],
+    "stats": [
+      {"value": "18", "label": "UWC schools and colleges"},
+      {"value": "85,000+", "label": "UWC alumni since 1962"},
+      {"value": "80%+", "label": "national committee selectees receiving financial support"}
+    ],
+    "applySteps": [
+      "Find your national committee or another eligible application route.",
+      "Confirm the local age rules, funding route and deadline before you begin.",
+      "Prepare your application around your curiosity, character, service and readiness for an international community."
+    ],
+    "sources": [
+      {"label": "UWC: how to apply for 2027 entry", "url": "https://uwc.org/how-to-apply/"},
+      {"label": "UWC: history and global network", "url": "https://uwc.org/what-is-uwc/our-history/"},
+      {"label": "UWC: national committees and financial support", "url": "https://uwc.org/apply-ibdp/apply-via-a-national-committee/"}
+    ]
+  },
+  {
+    "slug": "flex",
+    "name": "Future Leaders Exchange",
+    "shortName": "FLEX",
+    "type": "Exchange",
+    "country": "United States",
+    "location": "Host communities across the United States",
+    "organizer": "U.S. Department of State",
+    "field": ["Leadership", "Cultural exchange", "Service"],
+    "grade": ["9", "10", "11"],
+    "fundingCategory": "Fully funded",
+    "durationCategory": "Academic year+",
+    "deadlineCategory": "Varies by location",
+    "deadlineDate": null,
+    "deadline": "Country-specific selection round; verify with the official FLEX site",
+    "duration": "One U.S. academic year",
+    "eligibility": "High school students from participating Europe and Eurasia countries; national rules vary",
+    "funding": "Merit-based scholarship funded by the U.S. Department of State",
+    "summary": "Spend an academic year at a U.S. high school, live with a volunteer host family and become a cultural ambassador for your home country.",
+    "tagline": "One school year. A new perspective on the world.",
+    "accent": "#88b9ff",
+    "logo": null,
+    "logoAlt": "FLEX official logo pending",
+    "heroImage": "/media/flex-student.jpg",
+    "heroImageAlt": "FLEX participant Binazir Mizrobova on the rooftop of the Newseum",
+    "heroImageCredit": "Image: U.S. Department of State",
+    "heroImageSource": "https://exchanges.state.gov/non-us/program/future-leaders-exchange/stories/part-family",
+    "officialUrl": "https://exchanges.state.gov/non-us/program/future-leaders-exchange",
+    "applyUrl": "https://www.discoverflex.org/",
+    "about": [
+      "FLEX is a competitive exchange scholarship for high school students from participating countries in Europe and Eurasia. The U.S. Department of State funds the program. Selected students spend a school year in the United States, attend an American high school and live with a volunteer host family.",
+      "The exchange is built around mutual understanding. Students share their culture with American classmates and neighbors while learning how another community studies, celebrates, serves and solves problems. The host family, school and local organization form a support network throughout the year.",
+      "FLEX selection is demanding and country-specific. The U.S. Department of State describes a multi-stage public application process. Eligibility and deadlines change by country, so an applicant should use the official FLEX site for the current local round rather than relying on a universal deadline."
+    ],
+    "history": [
+      {"year": "1992", "title": "A new exchange vision", "text": "The U.S. FREEDOM Support Act created a framework for educational exchange with countries emerging after the Soviet Union's dissolution."},
+      {"year": "1993", "title": "FLEX begins", "text": "The Future Leaders Exchange program launched to strengthen long-term ties and mutual understanding between the United States and Europe and Eurasia."},
+      {"year": "Today", "title": "An enduring alumni network", "text": "The Department of State reports more than 32,000 FLEX alumni across 24 countries over the program's history."}
+    ],
+    "experiences": [
+      {"icon": "⌂", "title": "Host family life", "text": "Become part of a U.S. household and learn the rhythms of daily life in a new community."},
+      {"icon": "✳", "title": "American high school", "text": "Take classes, meet classmates and explore clubs, sports or arts at a local school."},
+      {"icon": "↗", "title": "Community service", "text": "Volunteer, share your culture and contribute to the community hosting you."},
+      {"icon": "◎", "title": "Leadership and exchange", "text": "Build the confidence to represent your country and maintain connections through the alumni network."}
+    ],
+    "stats": [
+      {"value": "1 year", "label": "U.S. high school exchange"},
+      {"value": "32,000+", "label": "FLEX alumni reported by State"},
+      {"value": "24", "label": "countries across FLEX history"}
+    ],
+    "applySteps": [
+      "Check whether FLEX recruits in your country and read the local eligibility criteria.",
+      "Follow the official country application process and its current selection dates.",
+      "Prepare to explain your interests, adaptability, leadership and willingness to share your culture."
+    ],
+    "sources": [
+      {"label": "U.S. Department of State: FLEX overview", "url": "https://exchanges.state.gov/non-us/program/future-leaders-exchange"},
+      {"label": "U.S. Department of State: program details", "url": "https://exchanges.state.gov/non-us/program/future-leaders-exchange/details"},
+      {"label": "U.S. Department of State: program history and alumni", "url": "https://exchanges.state.gov/us/program/future-leaders-exchange-flex-abroad"},
+      {"label": "U.S. Department of State: participant story", "url": "https://exchanges.state.gov/non-us/program/future-leaders-exchange/stories/part-family"}
+    ]
+  },
+  {
+    "slug": "lumiere",
+    "name": "Lumiere Research Scholar Program",
+    "shortName": "Lumiere",
+    "type": "Research",
+    "country": "Online",
+    "location": "Remote, open to students worldwide",
+    "organizer": "Lumiere Education",
+    "field": ["STEM", "Humanities", "Social sciences"],
+    "grade": ["9", "10", "11", "12"],
+    "fundingCategory": "Paid / aid available",
+    "durationCategory": "1–6 months",
+    "deadlineCategory": "Rolling / cohort-based",
+    "deadlineDate": null,
+    "deadline": "Cohort-based; confirm the current round on Lumiere's official site",
+    "duration": "12 weeks to one year, depending on track",
+    "eligibility": "Currently enrolled high school students; track requirements may differ",
+    "funding": "Tuition-based; financial aid is available",
+    "summary": "Work one-to-one with a PhD mentor to shape an original research question, investigate it and produce an independent paper.",
+    "tagline": "Turn curiosity into original research.",
+    "accent": "#d5afff",
+    "logo": null,
+    "logoAlt": "Lumiere official logo pending",
+    "heroImage": null,
+    "heroImageAlt": null,
+    "heroImageCredit": null,
+    "heroImageSource": null,
+    "officialUrl": "https://www.lumiere-education.com/",
+    "applyUrl": "https://www.lumiere-education.com/",
+    "about": [
+      "Lumiere Education connects ambitious high school students with PhD mentors for independent research. Instead of entering an existing lab assignment, a student develops a question in a chosen field and works through a guided research process with one-to-one support.",
+      "The project moves from reading and research design to analysis, writing and a final paper. Topics can span science, technology, social sciences or the humanities. Longer tracks include additional support for students who want to pursue publication, while the core value is learning how to think and work like a researcher.",
+      "The program is delivered remotely, which makes mentorship possible for students without nearby university research access. It is tuition-based, with financial aid offered by Lumiere. Program length and costs vary by track, so families should check the current official program details before applying."
+    ],
+    "history": [
+      {"year": "2020", "title": "A research mentorship model begins", "text": "Lumiere says it was founded by Harvard and Oxford researchers to help high school students work one-to-one with PhD mentors."},
+      {"year": "Now", "title": "A wider research community", "text": "Lumiere reports more than 7,200 students mentored since 2020 and student work published in more than 50 academic journals. These are Lumiere-wide figures, not Relay outcomes."}
+    ],
+    "experiences": [
+      {"icon": "⌕", "title": "Find a question", "text": "Choose a topic worth investigating and narrow it into an achievable research project."},
+      {"icon": "◉", "title": "Meet a PhD mentor", "text": "Work individually with a researcher who guides reading, methods and critical thinking."},
+      {"icon": "✎", "title": "Write a paper", "text": "Turn findings into a coherent independent paper with an academic structure."},
+      {"icon": "↗", "title": "Explore publication", "text": "Longer tracks can add guidance for submitting work to a student or academic journal."}
+    ],
+    "stats": [
+      {"value": "1:1", "label": "PhD mentor model"},
+      {"value": "7,200+", "label": "students mentored since 2020, per Lumiere"},
+      {"value": "50+", "label": "journals publishing student work, per Lumiere"}
+    ],
+    "applySteps": [
+      "Choose the research field and track that match your interests and available time.",
+      "Check the current cohort deadline, tuition and aid information on Lumiere's site.",
+      "Prepare to discuss the question you want to investigate and the skills you hope to build."
+    ],
+    "sources": [
+      {"label": "Lumiere Education: program and impact overview", "url": "https://www.lumiere-education.com/"},
+      {"label": "Lumiere Education: research program description", "url": "https://www.lumiere-education.com/post/research-opportunities-in-economics-for-high-school-students"}
+    ]
+  },
+  {
+    "slug": "yygs",
+    "name": "Yale Young Global Scholars",
+    "shortName": "YYGS",
+    "type": "Summer Program",
+    "country": "United States",
+    "location": "Yale University, New Haven, Connecticut",
+    "organizer": "Yale University Office of International Affairs",
+    "field": ["STEM", "Politics & economics", "Global challenges"],
+    "grade": ["10", "11"],
+    "fundingCategory": "Paid / aid available",
+    "durationCategory": "Under 1 month",
+    "deadlineCategory": "Upcoming date",
+    "deadlineDate": "2026-10-15",
+    "deadline": "Early Action: 15 Oct 2026; Regular Decision: 6 Jan 2027, 11:59 pm ET",
+    "duration": "Two weeks",
+    "eligibility": "Current high school sophomores or juniors, age 16–18 by 18 Jul 2027; other criteria apply",
+    "funding": "Need-based aid and selected scholarships, including possible full tuition coverage",
+    "summary": "Live on Yale's campus for two weeks of lectures, small seminars and conversations with young people from around the world.",
+    "tagline": "A global classroom on Yale's campus.",
+    "accent": "#8bb9ff",
+    "logo": null,
+    "logoAlt": "YYGS official logo pending",
+    "heroImage": "/media/yygs-campus.jpg",
+    "heroImageAlt": "Students at Yale Young Global Scholars",
+    "heroImageCredit": "Image: Yale Young Global Scholars",
+    "heroImageSource": "https://globalscholars.yale.edu/",
+    "officialUrl": "https://globalscholars.yale.edu/",
+    "applyUrl": "https://globalscholars.yale.edu/how-apply",
+    "about": [
+      "Yale Young Global Scholars is a residential pre-college program run by Yale University's Office of International Affairs. Each summer, high school students from across the world spend two weeks on Yale's campus in an academic track centered on science and technology, politics and economics, or global challenges.",
+      "The days combine Yale faculty lectures with smaller seminars led by undergraduate and graduate instructors. Students test ideas with peers, collaborate on projects and experience the social side of university life in residential colleges. The program is designed to make global conversation a central part of academic learning.",
+      "Admission is competitive, and eligibility is specific to the 2027 cycle. Students must be current high school sophomores or juniors and meet age, graduation and English fluency requirements. Need-based financial aid is available to applicants from all countries; applicants should review the official deadlines and aid instructions before submitting."
+    ],
+    "history": [
+      {"year": "2001", "title": "Ivy Scholars begins", "text": "Yale faculty and administrators started a small pre-collegiate summer program to bring future leaders together across borders."},
+      {"year": "2012", "title": "A global identity", "text": "The program was renamed Yale Young Global Scholars to reflect its international conversation and ambition."},
+      {"year": "2016", "title": "Experiments beyond New Haven", "text": "YYGS offered sessions at Yale-NUS College in Singapore and Yale Center Beijing in China."},
+      {"year": "2023", "title": "Back on campus", "text": "After three online summers during the pandemic, YYGS returned to in-person programming at Yale."}
+    ],
+    "experiences": [
+      {"icon": "✳", "title": "Faculty lectures", "text": "Hear Yale scholars introduce big questions and current ideas across your track."},
+      {"icon": "◉", "title": "Small seminars", "text": "Discuss evidence and arguments with undergraduate and graduate instructors and an international cohort."},
+      {"icon": "⌂", "title": "Residential life", "text": "Live in Yale residential colleges, share meals and join community events with other scholars."},
+      {"icon": "↗", "title": "Capstone collaboration", "text": "Work with peers to synthesize learning into a project and present it at the end of the session."}
+    ],
+    "stats": [
+      {"value": "2 weeks", "label": "residential academic session"},
+      {"value": "150+", "label": "countries represented, per Yale"},
+      {"value": "~2,000", "label": "participants annually, per Yale"}
+    ],
+    "applySteps": [
+      "Check the 2027 age, grade, graduation and English requirements on Yale's eligibility page.",
+      "Choose an academic track and decide whether to apply by Early Action or Regular Decision.",
+      "Prepare your activities list, essays, school transcript, recommendation and financial aid materials if needed."
+    ],
+    "sources": [
+      {"label": "Yale: 2027 application deadlines", "url": "https://globalscholars.yale.edu/application-deadlines"},
+      {"label": "Yale: eligibility", "url": "https://globalscholars.yale.edu/eligibility"},
+      {"label": "Yale: program history", "url": "https://globalscholars.yale.edu/about-yygs/history"},
+      {"label": "Yale: residential life", "url": "https://globalscholars.yale.edu/residential-life"}
+    ]
+  }
+]
