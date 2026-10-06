@@ -33,6 +33,7 @@ function walk(dir) {
     if (entry.isDirectory()) { walk(file); continue; }
     if (entry.name !== 'index.html') continue;
     let html = fs.readFileSync(file, 'utf8');
+    html = html.replace(/href="\/flex-trial\.css(?:\?v=\d+)?"/, 'href="/flex-trial.css?v=2"');
     if (html.includes('data-relay-theme="2026"')) {
       html = html.replace(/href="\/theme\.css(?:\?v=\d+)?"/, 'href="/theme.css?v=2"');
       fs.writeFileSync(file, html);

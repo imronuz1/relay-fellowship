@@ -8,6 +8,7 @@ const docs=path.join(root,'docs');
 const base='/relay-fellowship';
 
 execFileSync(process.execPath,[path.join(root,'scripts','build-content.mjs')],{stdio:'inherit'});
+execFileSync(process.execPath,[path.join(root,'scripts','render-program-pages.mjs')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(root,'scripts','augment-home.mjs')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(root,'scripts','apply-site-theme.mjs')],{stdio:'inherit'});
 

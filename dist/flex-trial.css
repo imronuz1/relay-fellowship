@@ -49,6 +49,9 @@
 .flex-experiences span{display:block;color:#b4ee70;font-size:1.5rem;margin-bottom:10px}
 .flex-experiences strong{display:block;color:#fff;font-size:.9rem;margin-bottom:5px}
 .flex-experiences p{font-size:.78rem;line-height:1.55;margin:0}
+.flex-steps{margin:0;padding-left:22px;color:#d4e0ed;font-size:.9rem;line-height:1.7}
+.flex-steps li{padding:5px 0 5px 7px}
+.flex-steps li::marker{color:#b4ee70;font-weight:800}
 .flex-sources{padding:50px 2px 0;color:#9dadc2}
 .flex-sources h2{font-size:1.45rem;margin-bottom:8px}
 .flex-sources p{font-size:.78rem}
