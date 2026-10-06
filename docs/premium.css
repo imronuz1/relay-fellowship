@@ -113,7 +113,7 @@ body[data-relay-theme] .signup-card input:focus,body[data-relay-theme] .signup-c
 body[data-relay-theme] .signup-primary,body[data-relay-theme] #app .button{background:linear-gradient(120deg,#c0f584,#a5eb70);color:#102139;border-radius:11px;box-shadow:0 10px 24px #a9ed651c}
 body[data-relay-theme] .signup-primary:hover,body[data-relay-theme] #app .button:hover{background:linear-gradient(120deg,#d6faa9,#b8f083);transform:translateY(-2px);box-shadow:0 15px 32px #a9ed6534}
 body[data-relay-theme] .account-secondary,body[data-relay-theme] .google-button{border-radius:11px}
-body[data-relay-theme] #app .hero h1{font-weight:800;letter-spacing:-.075em}
+body[data-relay-theme] #app .hero h1{font-family:Manrope,system-ui,sans-serif;font-size:clamp(2.9rem,5vw,5rem);font-weight:800;letter-spacing:-.045em;word-spacing:.08em}
 body[data-relay-theme] #app .mode-card,body[data-relay-theme] #app .panel,body[data-relay-theme] #app .review-card{border-radius:20px;background:linear-gradient(145deg,#192b43,#14243a);transition:transform .45s var(--relay-ease),box-shadow .45s,border-color .35s}
 body[data-relay-theme] #app .mode-card:hover{transform:translateY(-5px);box-shadow:0 22px 42px #02081758;border-color:#749c9b}
 body[data-relay-theme] #app .progress-track span,body[data-relay-theme] #app .meter span{background:linear-gradient(90deg,#7bcbaa,#b6ee76);transition:width .55s var(--relay-ease)}
@@ -124,6 +124,9 @@ body[data-relay-theme] h1,body[data-relay-theme] h2,body[data-relay-theme] h3{le
 body[data-relay-theme] .hero-surface h1,body[data-relay-theme] .catalog-hero h1,body[data-relay-theme] .collection-hero h1,body[data-relay-theme] .flex-heading h1,body[data-relay-theme] .signup-intro h1,body[data-relay-theme] #app .hero h1{letter-spacing:-.045em;word-spacing:.08em}
 body[data-relay-theme] .catalog-head h1 em{margin-left:.07em}
 body[data-relay-theme] .flex-shell::before{right:0;width:min(650px,100%)}
+body[data-relay-theme] .min-h-screen > main h1{font-family:Manrope,system-ui,sans-serif;font-size:clamp(3rem,4.8vw,5rem);font-weight:800;letter-spacing:-.045em;word-spacing:.08em}
+body[data-relay-theme] .min-h-screen > main .rounded-3xl{background:linear-gradient(145deg,#1b3048,#132338)!important;border:1px solid #55708382!important;border-radius:22px;box-shadow:0 16px 34px #0208173b;transition:transform .45s var(--relay-ease),box-shadow .45s,border-color .35s}
+body[data-relay-theme] .min-h-screen > main .rounded-3xl:hover{transform:translateY(-5px);border-color:#83b29c!important;box-shadow:0 25px 42px #02081760}
 
 /* Progressive motion: content remains visible without JavaScript. */
 body.motion-ready .relay-reveal{opacity:0;transform:translate3d(0,25px,0);transition:opacity .65s var(--relay-ease),transform .65s var(--relay-ease);transition-delay:var(--reveal-delay,0ms)}

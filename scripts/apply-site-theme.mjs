@@ -43,7 +43,7 @@ function walk(dir) {
     html = html.replace('</head>', '<link rel="apple-touch-icon" href="/media/relay-logo.jpg?v=2"></head>');
     if (!html.includes('family=Manrope')) html = html.replace('</head>', '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>');
     html = html.replace(/<link rel="stylesheet" href="\/(?:theme|premium)\.css(?:\?v=\d+)?">/g, '');
-    html = html.replace('</head>', '<link rel="stylesheet" href="/theme.css?v=5"><link rel="stylesheet" href="/premium.css?v=3"></head>');
+    html = html.replace('</head>', '<link rel="stylesheet" href="/theme.css?v=5"><link rel="stylesheet" href="/premium.css?v=4"></head>');
     html = html.replace(/<script src="\/premium\.js(?:\?v=\d+)?" defer><\/script>/g, '');
     html = html.replace('</body>', '<script src="/premium.js?v=3" defer></script></body>');
     html = html.replace(/href="\/flex-trial\.css(?:\?v=\d+)?"/, 'href="/flex-trial.css?v=2"');
