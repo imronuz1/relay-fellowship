@@ -10,6 +10,9 @@ const navEnd=home.indexOf('</nav>',firstNav);
 if(!home.slice(firstNav,navEnd).includes('href="/register/"')){
   home=home.slice(0,navEnd)+'<a class="text-sm text-white/70 transition-colors hover:text-white" href="/register/">Register</a>'+home.slice(navEnd);
 }
+if(!home.slice(firstNav,home.indexOf('</nav>',firstNav)).includes('href="/flex-mock/"')){
+  home=home.replace('</nav>','<a class="text-sm text-white/70 transition-colors hover:text-white" href="/flex-mock/">FLEX Essay Mock Test</a></nav>');
+}
 home=home.replace(/>Join Relay<\/a>/g,'>Register</a>');
 const cardStart=home.indexOf('<div class="glass-panel float-shadow mt-4 p-5">');
 if(cardStart<0)throw Error('Home hero card was not found');
@@ -66,5 +69,6 @@ fs.writeFileSync(mentorsFile,mentors);
 const menuFile=path.join(dist,'site.js');
 let menu=fs.readFileSync(menuFile,'utf8');
 if(!menu.includes('href="/register/"'))menu=menu.replace('<a href="/achievements/">Achievements</a>','<a href="/achievements/">Achievements</a><a href="/register/">Register</a>');
+if(!menu.includes('href="/flex-mock/"'))menu=menu.replace('<a href="/register/">Register</a>','<a href="/register/">Register</a><a href="/flex-mock/">FLEX Essay Mock Test</a>');
 menu=menu.replace(/>Join Relay<\/a>/g,'>Register</a>');
 fs.writeFileSync(menuFile,menu);

@@ -20,6 +20,10 @@ After changing `firestore.rules`, publish the new version in Firebase Console as
 
 The registration flow is Register → Open account → Sign up or Sign in → Student questions. Email sign-in sends a link to the student's entered email address. Google sign-in uses a popup. Student profiles and their own essays are saved only after sign-in. Firestore rules restrict each profile to its owner. The site never submits a program application on the student's behalf.
 
+## FLEX essay mock test
+
+The practice simulator lives at `/flex-mock/`. It includes a three-essay timed mock test, a one-essay practice mode, local draft and history storage, and an AI review requested only after submission. This is an independent practice tool, not an official FLEX test or scoring system. Essay text is sent to the external AI review service only when the student selects the review button. The model key stays behind Firebase AI Logic; the site contains only public Firebase and App Check configuration.
+
 Firebase's web configuration is public client configuration; keep service-account keys and other private credentials out of this repository.
 
 ## Content
