@@ -35,6 +35,7 @@ function walk(dir) {
     if (entry.name !== 'index.html') continue;
     let html = fs.readFileSync(file, 'utf8');
     html = html.replaceAll('<span class="relay-brand-icon">R<span>.</span></span>', '<img class="relay-brand-image" src="/media/relay-logo.jpg" alt="">');
+    html = html.replaceAll('<a class="relay-side-brand" href="/">', '<a class="relay-side-brand" href="/" aria-label="Relay Fellowship home">');
     html = html.replaceAll('<span class="brand-mark">R<span>.</span></span>', '<img class="brand-logo-image" src="/media/relay-logo.jpg" alt="">');
     html = html.replaceAll('/__l5e/assets-v1/64849a4b-34c9-4fee-8df8-d9a4ede0c4e1/relay-logo.jpg', '/media/relay-logo.jpg');
     html = html.replace(/<link rel="icon"[^>]*>/g, '<link rel="icon" type="image/jpeg" href="/media/relay-logo.jpg?v=2">');
