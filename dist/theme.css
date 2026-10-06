@@ -1,0 +1,111 @@
+/* Shared opportunity-style shell for every Relay page. */
+body[data-relay-theme]{--background:#0b1424;--foreground:#eef4fb;--card:#152238;--card-foreground:#eef4fb;--secondary:#111f34;--secondary-foreground:#eaf2fa;--muted:#17253b;--muted-foreground:#a9b9cd;--border:#314259;--input:#314259;--primary:#a9ed65;--primary-foreground:#102139;--accent:#a9ed65;--accent-foreground:#102139;--color-background:#0b1424;--color-foreground:#eef4fb;--color-card:#152238;--color-card-foreground:#eef4fb;--color-secondary:#111f34;--color-secondary-foreground:#eaf2fa;--color-muted:#17253b;--color-muted-foreground:#a9b9cd;--color-border:#314259;--color-primary:#a9ed65;--color-primary-foreground:#102139;--color-accent:#a9ed65;--color-accent-foreground:#102139;background:#0b1424;color:#eef4fb;min-height:100vh}
+body[data-relay-theme] a:focus-visible,body[data-relay-theme] button:focus-visible,body[data-relay-theme] input:focus-visible,body[data-relay-theme] select:focus-visible,body[data-relay-theme] textarea:focus-visible,body[data-relay-theme] summary:focus-visible{outline:3px solid #a9ed65;outline-offset:3px}
+body[data-relay-theme] > main,body[data-relay-theme] > footer,body[data-relay-theme] > .min-h-screen{margin-left:250px}
+body[data-relay-theme] > header,body[data-relay-theme] > .min-h-screen > header{display:none!important}
+.relay-sidebar{position:fixed;z-index:90;inset:0 auto 0 0;width:250px;display:flex;flex-direction:column;background:#111f35;border-right:1px solid #30415a;padding:27px 15px 19px;font-family:'DM Sans',Arial,sans-serif;color:#fff}
+.relay-side-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:1rem;font-weight:800;letter-spacing:-.04em;padding:2px 6px 34px;white-space:nowrap}
+.relay-side-brand small{font-size:inherit;font-weight:600}
+.relay-brand-icon{display:grid;place-items:center;flex:none;width:33px;height:33px;border-radius:9px;background:#26a4cd;color:#fff;font:bold 20px 'DM Sans',Arial,sans-serif}
+.relay-brand-icon span{color:#cefb75}
+.relay-sidebar nav{display:grid;gap:6px}
+.relay-sidebar nav a{display:block;padding:12px 14px;border-radius:11px;color:#bdcbdb;text-decoration:none;font-size:.88rem;font-weight:700}
+.relay-sidebar nav a:hover,.relay-sidebar nav a[aria-current=page]{background:#294c70;color:#fff}
+.relay-side-bottom{margin-top:auto;padding:0 3px}
+.relay-side-bottom p{font-size:.74rem;line-height:1.55;color:#8fa4ba;margin:0 7px 18px}
+.relay-side-register{display:flex;align-items:center;justify-content:space-between;background:#aaed66;border-radius:10px;color:#0c1e31;text-decoration:none;font-size:.88rem;font-weight:800;padding:14px 17px;box-shadow:0 8px 20px #0002}
+.relay-side-register:hover{background:#c9f88b}
+.relay-mobilebar{display:none}
+
+/* Home and mentors retain their content but share the new canvas and cards. */
+body[data-relay-theme] .min-h-screen{background:#0b1424;color:#eef4fb}
+body[data-relay-theme] .hero-surface{background:linear-gradient(135deg,#102038,#0b1424 74%)}
+body[data-relay-theme] .card-elevated,body[data-relay-theme] .home-program-card,body[data-relay-theme] .glass-panel{background:#152238!important;border:1px solid #30415a!important;box-shadow:0 14px 30px #03081728;color:#eff6fd}
+body[data-relay-theme] .home-program-card:hover{border-color:#88c9a2!important;background:#1c3049!important}
+body[data-relay-theme] .min-h-screen > section:not(.hero-surface){background:#0b1424;color:#eef4fb}
+body[data-relay-theme] .min-h-screen > section.bg-secondary\/50{background:#101d30!important}
+body[data-relay-theme] .bg-card,body[data-relay-theme] .bg-background,body[data-relay-theme] .bg-secondary\/40{background-color:#152238!important;color:#eef4fb!important}
+body[data-relay-theme] .text-muted-foreground{color:#a9b9cd!important}
+body[data-relay-theme] .text-foreground{color:#eef4fb!important}
+body[data-relay-theme] .border-border{border-color:#314259!important}
+body[data-relay-theme] .min-h-screen > main{padding-top:44px;padding-bottom:75px}
+body[data-relay-theme] .min-h-screen > main h1{font-family:Georgia,serif;font-size:clamp(2.8rem,4.8vw,4.5rem);font-weight:400}
+body[data-relay-theme] .min-h-screen > main .rounded-3xl{background:#152238!important;border-color:#30415a!important}
+body[data-relay-theme] .min-h-screen > footer{background:#08121f!important}
+
+/* Program listing and program information. */
+body[data-relay-theme]{--navy:#0b1424;--navy2:#152238;--ink:#eef4fb;--muted:#a9b9cd;--cream:#101d30;--line:#30415a;--lime:#a9ed65}
+body[data-relay-theme] .catalog-hero,body[data-relay-theme] .detail-hero,body[data-relay-theme] .collection-hero{background:#0b1424}
+body[data-relay-theme] .catalog-hero{padding:55px 0 58px}
+body[data-relay-theme] .catalog-head h1,body[data-relay-theme] .detail-hero h1,body[data-relay-theme] .collection-hero h1{font-family:Georgia,serif;font-weight:400;letter-spacing:-.045em}
+body[data-relay-theme] .catalog-section{padding-top:55px}
+body[data-relay-theme] .filter-panel,body[data-relay-theme] .program-card,body[data-relay-theme] .fact-bar,body[data-relay-theme] .experience-card,body[data-relay-theme] .empty-story,body[data-relay-theme] .collection-empty,body[data-relay-theme] .story-card{background:#152238;border-color:#30415a;color:#eef4fb;box-shadow:0 12px 25px #03081720}
+body[data-relay-theme] .program-card:hover{border-color:#8fc7a0;box-shadow:0 17px 35px #03081745}
+body[data-relay-theme] .filter-label select,body[data-relay-theme] .search-row input{background:#0e1a2b;border-color:#3a4c61;color:#edf4fa}
+body[data-relay-theme] .filter-label select option{background:#0e1a2b;color:#edf4fa}
+body[data-relay-theme] .search-row input::placeholder{color:#8ea1b5}
+body[data-relay-theme] .search-row button{background:#294c70;color:#eaf4ff}
+body[data-relay-theme] .search-row button:hover{background:#396389}
+body[data-relay-theme] .program-logo,body[data-relay-theme] .detail-logo{background:#edf5f5;color:#102139}
+body[data-relay-theme] .eyebrow-pill{background:#20413c;color:#b6f0d7}
+body[data-relay-theme] .card-body>p:last-child,body[data-relay-theme] .prose p,body[data-relay-theme] .timeline-item p,body[data-relay-theme] .experience-card p,body[data-relay-theme] .empty-story p,body[data-relay-theme] .story-card p:not(.kicker),body[data-relay-theme] .apply-section>div>p:not(.kicker){color:#aebed0}
+body[data-relay-theme] .card-link,body[data-relay-theme] .button-dark{background:#a9ed65;color:#0d2032}
+body[data-relay-theme] .card-link:hover,body[data-relay-theme] .button-dark:hover{background:#c7f58c}
+body[data-relay-theme] .section-tint{background:#101d30}
+body[data-relay-theme] .detail-section{padding-top:68px;padding-bottom:68px}
+body[data-relay-theme] .detail-hero{padding:36px 0 54px}
+body[data-relay-theme] .detail-hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:25px}
+body[data-relay-theme] .detail-hero-grid>div:first-child{width:100%}
+body[data-relay-theme] .detail-hero h1{font-size:clamp(2.8rem,4.9vw,4.9rem);max-width:930px}
+body[data-relay-theme] .detail-logo{display:none}
+body[data-relay-theme] .detail-photo{width:100%;border:1px solid #30415a;border-radius:19px;overflow:hidden}
+body[data-relay-theme] .detail-photo img{height:390px;border-radius:0}
+body[data-relay-theme] .detail-art{height:300px}
+body[data-relay-theme] .detail-intro{max-width:800px}
+body[data-relay-theme] .fact-bar{margin-top:0}
+body[data-relay-theme] .stats-section{background:#14283a}
+body[data-relay-theme] .empty-story.compact{background:#152238}
+body[data-relay-theme] .footer{background:#08121f}
+body[data-relay-theme] .source-section li,body[data-relay-theme] .text-link{color:#a9e5cc}
+body[data-relay-theme] .cta-band{background:#152b35}
+
+/* The FLEX layout was the visual trial. Keep its cards while the shared shell takes over navigation. */
+body[data-relay-theme].flex-trial .topbar{display:none!important}
+body[data-relay-theme].flex-trial main,body[data-relay-theme].flex-trial .footer{margin-left:250px}
+
+/* Registration stays fully functional, with dark cards and readable controls. */
+body[data-relay-theme] .signup-shell{background:#0b1424;min-height:100vh;padding-top:55px}
+body[data-relay-theme] .signup-card{background:#152238;color:#eef4fb;border:1px solid #30415a;box-shadow:0 18px 45px #03081755}
+body[data-relay-theme] .signup-card h2{color:#fff}
+body[data-relay-theme] .signup-card p,body[data-relay-theme] .consent-row{color:#adbed0}
+body[data-relay-theme] .signup-card input:not([type=checkbox]),body[data-relay-theme] .signup-card select,body[data-relay-theme] .signup-card textarea{background:#0c192b;border-color:#3b5067;color:#f2f7fc}
+body[data-relay-theme] .signup-card input::placeholder,body[data-relay-theme] .signup-card textarea::placeholder{color:#8498ad}
+body[data-relay-theme] .signup-card select option{background:#0c192b;color:#f2f7fc}
+body[data-relay-theme] .signup-primary{background:#a9ed65;color:#102139}
+body[data-relay-theme] .signup-primary:hover{background:#c7f58c}
+body[data-relay-theme] .account-secondary,body[data-relay-theme] .google-button{background:#21344c;color:#eef4fb;border-color:#506277}
+body[data-relay-theme] .account-secondary:hover,body[data-relay-theme] .google-button:hover{background:#2a4260}
+body[data-relay-theme] .auth-divider span{background:#152238}
+body[data-relay-theme] .auth-divider:before{background:#3e5268}
+body[data-relay-theme] .essay-prompt{background:#233e3a;color:#c9f4db!important}
+body[data-relay-theme] .status,body[data-relay-theme] .save-success{background:#183b36;color:#d9f8e6;border-color:#386e5a}
+body[data-relay-theme] .status.error{background:#4a242c;color:#ffdee2}
+body[data-relay-theme] .text-button{color:#b7e9cf}
+
+/* Essay practice uses the same surfaces without changing the exam logic. */
+body[data-relay-theme] #app{color:#eef4fb}
+body[data-relay-theme] > main#app{width:min(1100px,calc(100% - 298px));margin-left:274px;margin-right:24px}
+body[data-relay-theme] #app .hero-panel,body[data-relay-theme] #app .mode-card,body[data-relay-theme] #app .panel,body[data-relay-theme] #app .history-card,body[data-relay-theme] #app .review-card,body[data-relay-theme] #app .history-row,body[data-relay-theme] #app .timer-box{background:#152238;border-color:#30415a;color:#eef4fb}
+body[data-relay-theme] #app .mode-card p,body[data-relay-theme] #app .mode-card ul,body[data-relay-theme] #app .muted,body[data-relay-theme] #app .counters,body[data-relay-theme] #app .quiet-note,body[data-relay-theme] #app .history-row small{color:#adbed0}
+body[data-relay-theme] #app .hero h1,body[data-relay-theme] #app .review-head h1{font-family:Georgia,serif;font-weight:400}
+body[data-relay-theme] #app .writing-box{background:#101d30;border-color:#536781;color:#f3f7fc}
+body[data-relay-theme] #app .writing-box::placeholder{color:#899bb0}
+body[data-relay-theme] #app .button{background:#a9ed65;color:#102139;border-color:#a9ed65}
+body[data-relay-theme] #app .button.secondary{background:#223950;color:#edf4fa;border-color:#536781}
+body[data-relay-theme] #app .score-chip,body[data-relay-theme] #app .structure span,body[data-relay-theme] #app .annotation-detail{background:#27445b;color:#eef4fb}
+body[data-relay-theme] .dialog{background:#152238;color:#eef4fb;border:1px solid #40556d}
+
+@media(max-width:950px){.relay-sidebar{width:210px}body[data-relay-theme] > main,body[data-relay-theme] > footer,body[data-relay-theme] > .min-h-screen,body[data-relay-theme].flex-trial main,body[data-relay-theme].flex-trial .footer{margin-left:210px}body[data-relay-theme] > main#app{width:calc(100% - 258px);margin-left:234px}.relay-side-brand{font-size:.88rem}}
+@media(max-width:700px){.relay-sidebar{display:none}.relay-mobilebar{position:sticky;top:0;z-index:90;display:flex;align-items:center;gap:10px;background:#111f35;border-bottom:1px solid #30415a;padding:9px 14px;font-family:'DM Sans',Arial,sans-serif;color:#fff}.relay-mobilebar .relay-side-brand{padding:0;font-size:.88rem}.relay-mobile-register{margin-left:auto;background:#a9ed65;color:#102139;padding:9px 12px;border-radius:9px;text-decoration:none;font-size:.75rem;font-weight:800;white-space:nowrap}.relay-mobilebar details{position:relative}.relay-mobilebar summary{list-style:none;cursor:pointer;padding:5px 8px;font-size:1.3rem;line-height:1}.relay-mobilebar summary::-webkit-details-marker{display:none}.relay-mobilebar nav{position:absolute;right:-14px;top:35px;width:min(280px,90vw);display:grid;gap:2px;background:#172a43;border:1px solid #435871;border-radius:0 0 13px 13px;padding:12px;box-shadow:0 18px 30px #0006}.relay-mobilebar nav a{color:#e6eff9;text-decoration:none;font-size:.89rem;font-weight:700;padding:10px;border-radius:7px}.relay-mobilebar nav a:hover,.relay-mobilebar nav a[aria-current=page]{background:#2b5277}body[data-relay-theme] > main,body[data-relay-theme] > footer,body[data-relay-theme] > .min-h-screen,body[data-relay-theme].flex-trial main,body[data-relay-theme].flex-trial .footer{margin-left:0}.flex-trial .topbar{display:none!important}body[data-relay-theme] .catalog-hero{padding-top:42px}body[data-relay-theme] .detail-photo img{height:280px}body[data-relay-theme] .signup-shell{padding-top:28px}}
+@media(max-width:440px){.relay-mobilebar .relay-side-brand small{display:none}.relay-mobilebar .relay-brand-icon{width:30px;height:30px}body[data-relay-theme] .detail-photo img{height:220px}}
+@media(max-width:700px){body[data-relay-theme] > main#app{width:min(1100px,calc(100% - 36px));margin-left:auto;margin-right:auto}}

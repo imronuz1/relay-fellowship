@@ -9,6 +9,7 @@ const base='/relay-fellowship';
 
 execFileSync(process.execPath,[path.join(root,'scripts','build-content.mjs')],{stdio:'inherit'});
 execFileSync(process.execPath,[path.join(root,'scripts','augment-home.mjs')],{stdio:'inherit'});
+execFileSync(process.execPath,[path.join(root,'scripts','apply-site-theme.mjs')],{stdio:'inherit'});
 
 if(path.dirname(docs)!==root)throw Error('Unexpected output path');
 if(fs.existsSync(docs))fs.rmSync(docs,{recursive:true,force:true});
