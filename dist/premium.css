@@ -118,6 +118,13 @@ body[data-relay-theme] #app .mode-card,body[data-relay-theme] #app .panel,body[d
 body[data-relay-theme] #app .mode-card:hover{transform:translateY(-5px);box-shadow:0 22px 42px #02081758;border-color:#749c9b}
 body[data-relay-theme] #app .progress-track span,body[data-relay-theme] #app .meter span{background:linear-gradient(90deg,#7bcbaa,#b6ee76);transition:width .55s var(--relay-ease)}
 
+/* Keep the editorial weight while preserving clear spaces between words. */
+body[data-relay-theme]{letter-spacing:normal}
+body[data-relay-theme] h1,body[data-relay-theme] h2,body[data-relay-theme] h3{letter-spacing:-.038em;word-spacing:.065em}
+body[data-relay-theme] .hero-surface h1,body[data-relay-theme] .catalog-hero h1,body[data-relay-theme] .collection-hero h1,body[data-relay-theme] .flex-heading h1,body[data-relay-theme] .signup-intro h1,body[data-relay-theme] #app .hero h1{letter-spacing:-.045em;word-spacing:.08em}
+body[data-relay-theme] .catalog-head h1 em{margin-left:.07em}
+body[data-relay-theme] .flex-shell::before{right:0;width:min(650px,100%)}
+
 /* Progressive motion: content remains visible without JavaScript. */
 body.motion-ready .relay-reveal{opacity:0;transform:translate3d(0,25px,0);transition:opacity .65s var(--relay-ease),transform .65s var(--relay-ease);transition-delay:var(--reveal-delay,0ms)}
 body.motion-ready .relay-reveal.is-visible{opacity:1;transform:translateZ(0)}
