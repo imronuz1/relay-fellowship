@@ -43,12 +43,12 @@ function walk(dir) {
     html = html.replace('</head>', '<link rel="apple-touch-icon" href="/media/relay-logo.jpg?v=2"></head>');
     html = html.replace(/href="\/flex-trial\.css(?:\?v=\d+)?"/, 'href="/flex-trial.css?v=2"');
     if (html.includes('data-relay-theme="2026"')) {
-      html = html.replace(/href="\/theme\.css(?:\?v=\d+)?"/, 'href="/theme.css?v=3"');
+      html = html.replace(/href="\/theme\.css(?:\?v=\d+)?"/, 'href="/theme.css?v=4"');
       fs.writeFileSync(file, html);
       continue;
     }
     const active = routeFor(file);
-    html = html.replace('</head>', '<link rel="stylesheet" href="/theme.css?v=3"></head>');
+    html = html.replace('</head>', '<link rel="stylesheet" href="/theme.css?v=4"></head>');
     html = html.replace(/<body([^>]*)>/i, (_, attrs) => `<body${attrs} data-relay-theme="2026">${chrome(active)}`);
     fs.writeFileSync(file, html);
   }
