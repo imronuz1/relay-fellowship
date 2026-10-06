@@ -3,6 +3,7 @@ body[data-relay-theme]{--background:#0b1424;--foreground:#eef4fb;--card:#152238;
 body[data-relay-theme] a:focus-visible,body[data-relay-theme] button:focus-visible,body[data-relay-theme] input:focus-visible,body[data-relay-theme] select:focus-visible,body[data-relay-theme] textarea:focus-visible,body[data-relay-theme] summary:focus-visible{outline:3px solid #a9ed65;outline-offset:3px}
 body[data-relay-theme] > main,body[data-relay-theme] > footer,body[data-relay-theme] > .min-h-screen{margin-left:250px}
 body[data-relay-theme] > header,body[data-relay-theme] > .min-h-screen > header{display:none!important}
+body[data-relay-theme] .min-h-screen .hero-surface > header{display:none!important}
 .relay-sidebar{position:fixed;z-index:90;inset:0 auto 0 0;width:250px;display:flex;flex-direction:column;background:#111f35;border-right:1px solid #30415a;padding:27px 15px 19px;font-family:'DM Sans',Arial,sans-serif;color:#fff}
 .relay-side-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:1rem;font-weight:800;letter-spacing:-.04em;padding:2px 6px 34px;white-space:nowrap}
 .relay-side-brand small{font-size:inherit;font-weight:600}
