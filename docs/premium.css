@@ -33,6 +33,7 @@ body[data-relay-theme] .hero-surface > section,body[data-relay-theme] .hero-surf
 body[data-relay-theme] .hero-surface > section:first-of-type{min-height:min(800px,calc(100svh - 32px));padding-top:90px;padding-bottom:105px}
 body[data-relay-theme] .hero-surface h1{font-family:Manrope,system-ui,sans-serif;font-size:clamp(3.7rem,5.4vw,6.5rem);font-weight:800;line-height:1.025;letter-spacing:-.075em;animation:relay-rise .75s .08s var(--relay-ease) both}
 body[data-relay-theme] .hero-surface h1 .accent-text{background-size:180% 180%;animation:relay-gradient 9s ease infinite}
+body[data-relay-theme] .hero-surface h1 .accent-text{margin-left:.1em}
 body[data-relay-theme] .hero-surface h1+p{max-width:600px;font-size:clamp(1rem,1.3vw,1.18rem);line-height:1.72;animation:relay-rise .75s .2s var(--relay-ease) both}
 body[data-relay-theme] .hero-surface h1+p+div{animation:relay-rise .75s .32s var(--relay-ease) both}
 body[data-relay-theme] .hero-surface .glass-panel{background:linear-gradient(145deg,#1b2c42df,#14243ad9)!important;border:1px solid #7895a348!important;box-shadow:0 24px 65px #02071350,0 1px 0 #ffffff12 inset!important;backdrop-filter:blur(18px);border-radius:23px}
