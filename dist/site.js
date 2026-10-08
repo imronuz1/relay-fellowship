@@ -1,4 +1,21 @@
 (()=>{
+  const root=location.pathname.startsWith('/relay-fellowship/')?'/relay-fellowship/':'/';
+  if(location.pathname===root){
+    const flexOpen=Date.now()<Date.UTC(2026,9,23,4);
+    const flexNote=flexOpen?'FLEX Global 2027–28 applications are open for Uzbekistan through October 22, 2026.':'Explore FLEX Global and check the official application for current dates.';
+    let welcome=false;
+    try{welcome=sessionStorage.getItem('relayWelcomeAfterLogin')==='1';}catch(error){}
+    const header=document.querySelector('.hero-surface > header');
+    if(welcome&&header){
+      const invitation=document.createElement('section');
+      invitation.className='relay-welcome';
+      invitation.setAttribute('aria-label','Your next exchange opportunity');
+      invitation.innerHTML=`<div class="relay-welcome-inner"><div class="relay-welcome-copy"><span class="relay-welcome-kicker">WELCOME TO RELAY FELLOWSHIP</span><h2>Where will you go next?</h2><p>${flexNote} Explore the exchange, or find another program that fits your goals.</p></div><div class="relay-welcome-actions"><a class="relay-welcome-primary" href="${root}programs/flex/">Explore FLEX 2027–28</a><a class="relay-welcome-secondary" href="${root}opportunities/">Explore other exchanges</a><a class="relay-welcome-profile" href="https://ais.americancouncils.org/flexglobal" target="_blank" rel="noopener noreferrer">Official FLEX application ↗</a><a class="relay-welcome-profile" href="${root}dashboard/">Complete your profile</a></div><button class="relay-welcome-close" type="button" aria-label="Dismiss welcome invitation">×</button></div>`;
+      invitation.querySelector('.relay-welcome-close').addEventListener('click',()=>invitation.remove());
+      header.after(invitation);
+      try{sessionStorage.removeItem('relayWelcomeAfterLogin');}catch(error){}
+    }
+  }
   const menuButton=document.querySelector('button[aria-label="Open menu"]');
   if(menuButton){
     const menu=document.createElement('nav');menu.className='relay-mobile-menu';menu.setAttribute('aria-label','Mobile navigation');

@@ -17,7 +17,7 @@ function boot(path,emailLink=false){
   let observer;
   const user={uid:'student-1',email:'student@example.com',emailVerified:true};
   const context=vm.createContext({
-    document:{getElementById:get},location,localStorage:storage,history:{replaceState:(_,__,url)=>calls.push(['clean',String(url)])},
+    document:{getElementById:get},location,localStorage:storage,sessionStorage:storage,history:{replaceState:(_,__,url)=>calls.push(['clean',String(url)])},
     URL,URLSearchParams,Date,console,
     firebaseConfig:{apiKey:'test',authDomain:'test',projectId:'test',appId:'test'},
     initializeApp:()=>({}),getAuth:()=>({}),getFirestore:()=>({}),
@@ -35,7 +35,8 @@ function boot(path,emailLink=false){
 
 let page=boot('register');
 page.observer()(page.user);
-assert.equal(page.calls[0][1],'https://imronuz1.github.io/relay-fellowship/dashboard/');
+assert.equal(page.calls[0][1],'https://imronuz1.github.io/relay-fellowship/');
+assert.equal(page.store.get('relayWelcomeAfterLogin'),'1');
 
 page=boot('dashboard');
 page.observer()(null);
@@ -44,15 +45,17 @@ assert.equal(page.calls[0][1],'https://imronuz1.github.io/relay-fellowship/regis
 page=boot('register');
 await page.get('google-button').click();
 assert.deepEqual(page.calls.map(x=>x[0]),['persistence','popup','route']);
-assert.match(page.calls[2][1],/\/dashboard\/$/);
+assert.equal(page.calls[2][1],'https://imronuz1.github.io/relay-fellowship/');
+assert.equal(page.store.get('relayWelcomeAfterLogin'),'1');
 
 page=boot('register',true);
 await vm.runInContext("finishEmail('student@example.com')",page.context);
 assert.deepEqual(page.calls.map(x=>x[0]),['persistence','email','clean','route']);
-assert.match(page.calls[3][1],/\/dashboard\/$/);
+assert.equal(page.calls[3][1],'https://imronuz1.github.io/relay-fellowship/');
+assert.equal(page.store.get('relayWelcomeAfterLogin'),'1');
 
 page=boot('dashboard');
 page.observer()(page.user);
 assert.equal(page.get('profile-panel').hidden,false);
 assert.equal(page.calls.length,0);
-console.log('Register guard, dashboard guard, persistent sign-in, and email callback routing: OK');
+console.log('Home redirect, welcome invitation flag, dashboard guard, persistent sign-in, and email callback routing: OK');

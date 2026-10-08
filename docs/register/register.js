@@ -7,7 +7,7 @@ const $ = id => document.getElementById(id);
 const panels = ['setup-pending','account-panel','auth-panel','email-sent','confirm-email','profile-panel'];
 const programInfo = {
   uwc: {prompt:'UWC brings students from different backgrounds together for academics, service and shared life. Paste your essay about how you would contribute to that community and what you hope to learn.',url:'https://uwc.org/how-to-apply/'},
-  flex: {prompt:'FLEX is a year of study, host-family life and cultural exchange in the United States. Paste your essay about adapting to a new community and sharing your home culture.',url:'https://exchanges.state.gov/non-us/program/future-leaders-exchange'},
+  flex: {prompt:'FLEX is a year of study, host-family life and cultural exchange in the United States. Paste your essay about adapting to a new community and sharing your home culture.',url:'https://ais.americancouncils.org/flexglobal'},
   lumiere: {prompt:'Lumiere pairs students with research mentors. Paste your essay about the question you want to investigate, why it matters and how you would pursue it.',url:'https://www.lumiere-education.com/'},
   yygs: {prompt:'YYGS brings students together for interdisciplinary learning and global discussion. Paste your essay about a question or challenge you would explore with peers.',url:'https://globalscholars.yale.edu/'}
 };
@@ -22,11 +22,15 @@ let accountMode='signup';
 let completingEmailLink=false;
 let navigating=false;
 
+function markWelcome(){
+  try{sessionStorage.setItem('relayWelcomeAfterLogin','1');}catch(error){}
+}
+
 function route(name){
   if(navigating)return;
   navigating=true;
-  const url=new URL(name+'/',siteRoot);
-  if(programInfo[requestedProgram])url.searchParams.set('program',requestedProgram);
+  const url=new URL(name==='home'?'.':name+'/',siteRoot);
+  if(name!=='home'&&programInfo[requestedProgram])url.searchParams.set('program',requestedProgram);
   location.replace(url.href);
 }
 
@@ -88,7 +92,8 @@ async function finishEmail(email){
     if(programInfo[requestedProgram])cleanUrl.searchParams.set('program',requestedProgram);
     history.replaceState(null,'',cleanUrl);
     completingEmailLink=false;
-    route('dashboard');
+    markWelcome();
+    route('home');
   }catch(error){completingEmailLink=false;status(describeError(error),true);}
   finally{setBusy(button,false);}
 }
@@ -122,7 +127,7 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     try{
       await setPersistence(auth,browserLocalPersistence);
       const result=await signInWithPopup(auth,new GoogleAuthProvider());
-      if(result.user)route('dashboard');
+      if(result.user){markWelcome();route('home');}
     }
     catch(error){status(describeError(error),true);}
     finally{setBusy($('google-button'),false);}
@@ -163,7 +168,7 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     if(user){
       if(completingEmailLink)return;
       if(isDashboard)showProfile(user);
-      else route('dashboard');
+      else {markWelcome();route('home');}
     }else if(isDashboard)route('register');
     else if(!completingEmailLink&&$('email-sent').hidden&&$('auth-panel').hidden)panel('account-panel');
   },error=>status(describeError(error),true));

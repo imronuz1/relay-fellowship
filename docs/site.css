@@ -5,3 +5,10 @@
 @media(min-width:1024px){.relay-mobile-menu{display:none!important}}
 
 .home-program-card{display:block;color:inherit;text-decoration:none;cursor:pointer}.home-program-card:hover{transform:translateY(-4px)}.home-program-card:focus-visible{outline:3px solid #a3e635;outline-offset:4px}
+
+.relay-welcome{padding:18px 20px;background:#0b1839;color:#fff;border-bottom:1px solid #ffffff2a}
+.relay-welcome-inner{position:relative;max-width:1152px;margin:auto;padding:23px 54px 23px 26px;border:1px solid #ffffff32;border-radius:18px;background:linear-gradient(125deg,#1b315a,#11203f);display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:0 16px 32px #07142d33}
+.relay-welcome-copy{max-width:680px}.relay-welcome-kicker{font:700 11px/1.4 Manrope,system-ui,sans-serif;letter-spacing:.16em;color:#c6f272}.relay-welcome h2{margin:7px 0;font:800 clamp(23px,3vw,30px)/1.2 Manrope,system-ui,sans-serif;color:#fff}.relay-welcome p{margin:0;color:#e0e8f5;font:400 14px/1.65 Manrope,system-ui,sans-serif}
+.relay-welcome-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;min-width:250px}.relay-welcome-actions a{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 16px;font:700 12px/1.4 Manrope,system-ui,sans-serif;text-decoration:none;white-space:nowrap}.relay-welcome-primary{background:#c6f272;color:#0b1839}.relay-welcome-secondary{border:1px solid #ffffff55;color:#fff}.relay-welcome-profile{color:#c6f272;padding-left:4px!important}
+.relay-welcome-actions a:focus-visible,.relay-welcome-close:focus-visible{outline:3px solid #c6f272;outline-offset:3px}.relay-welcome-close{position:absolute;right:16px;top:12px;border:0;background:transparent;color:#dce8f8;font:25px/1 system-ui,sans-serif;cursor:pointer}
+@media(max-width:760px){.relay-welcome{padding:12px}.relay-welcome-inner{display:block;padding:20px 40px 20px 20px}.relay-welcome-actions{margin-top:18px;min-width:0}.relay-welcome-actions a{white-space:normal}}
