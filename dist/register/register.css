@@ -2,3 +2,25 @@
 .account-choices{display:grid;gap:12px}.account-choices .signup-primary{margin-top:0}.account-secondary{width:100%;border:1px solid #0d1930;border-radius:9px;background:#fff;color:#0d1930;padding:15px 19px;font-size:.91rem;font-weight:800;cursor:pointer}.account-secondary:hover{background:#edf8f3}.account-secondary:focus-visible,.signup-primary:focus-visible,.google-button:focus-visible,.text-button:focus-visible{outline:3px solid #0a9a89;outline-offset:3px}#back-to-account{margin-top:14px}
 
 .auth-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 25px;color:#10243d;font-family:Manrope,Arial,sans-serif;font-size:1.08rem;font-weight:800;letter-spacing:-.02em;text-align:center}.auth-brand img{display:block;width:48px;height:48px;object-fit:cover;border-radius:12px;flex:none}
+
+body[data-relay-theme] .signup-card .step-label{color:#b9f1d0!important}
+body[data-relay-theme] .signup-card .auth-brand{color:#f0f8ff}
+body[data-relay-theme] .signup-card .privacy-note,body[data-relay-theme] .signup-card .field-hint{color:#c8d7e6}
+body[data-relay-theme] .signup-card .save-success a{color:#b8f5d1}
+.signup-card fieldset{border:0;min-width:0;margin:0;padding:0;display:grid;gap:9px}
+.signup-card fieldset:disabled{opacity:.74}
+.signup-card [aria-invalid=true]{border-color:#ff9da1!important;box-shadow:0 0 0 2px #ff9da155!important}
+.signup-card #profile-loading{color:#d6e8f5}
+.signup-card .switch-choice{margin:16px 0;padding:16px;border:1px solid #7192a7;border-radius:10px;background:#20384d}
+.signup-card .switch-choice p{margin:5px 0 10px}
+.signup-card .switch-choice button{margin:4px 7px 4px 0;padding:9px 12px;border:1px solid #aac8d0;border-radius:8px;background:#223a50;color:#fff;cursor:pointer}
+.signup-card .switch-choice button:focus-visible{outline:3px solid #a9ed65;outline-offset:2px}
+.signup-card .recovery-actions{display:flex;gap:10px 20px;flex-wrap:wrap;margin-top:12px}
+.signup-card strong#sent-address{overflow-wrap:anywhere}
+.skip-link{position:fixed;left:10px;top:-100px;z-index:200;background:#a9ed65;color:#102139;padding:10px;border-radius:5px}
+.skip-link:focus{top:10px}
+.noscript-warning{padding:20px;background:#4a242c;color:#fff}
+.signup-card h2:focus{outline:none}
+.signup-card [hidden]{display:none!important}
+@media(max-width:520px){.signup-route{display:none}.signup-shell{padding-top:18px!important}.signup-intro{padding-bottom:0}.signup-intro h1{font-size:2rem;margin-bottom:12px}.signup-intro>p:not(.kicker){font-size:.9rem}.signup-card{padding:22px 18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.signup-shell *{animation:none!important;transition:none!important}}

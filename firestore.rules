@@ -12,24 +12,37 @@ service cloud.firestore {
           'email', 'school', 'grade', 'dateOfBirth', 'achievements',
           'lastProgram', 'updatedAt'
         ])
+        && request.resource.data.keys().hasAll([
+          'email', 'school', 'grade', 'dateOfBirth', 'achievements',
+          'lastProgram', 'updatedAt'
+        ])
+        && request.resource.data.email is string
         && request.resource.data.email == request.auth.token.email
         && request.resource.data.school is string
+        && request.resource.data.school == request.resource.data.school.trim()
+        && request.resource.data.school.size() >= 1
         && request.resource.data.school.size() <= 120
         && request.resource.data.grade in ['8', '9', '10', '11', '12', 'Other']
         && request.resource.data.dateOfBirth is string
-        && request.resource.data.dateOfBirth.size() == 10
+        && request.resource.data.dateOfBirth.matches('^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$')
         && request.resource.data.achievements is string
+        && request.resource.data.achievements == request.resource.data.achievements.trim()
+        && request.resource.data.achievements.size() >= 1
         && request.resource.data.achievements.size() <= 3000
-        && request.resource.data.lastProgram in ['uwc', 'flex', 'lumiere', 'yygs'];
+        && request.resource.data.lastProgram in ['uwc', 'flex', 'lumiere', 'yygs']
+        && request.resource.data.updatedAt == request.time;
     }
 
     function validEssay(programSlug) {
       return request.resource.data.keys().hasOnly(['programSlug', 'essay', 'updatedAt'])
+        && request.resource.data.keys().hasAll(['programSlug', 'essay', 'updatedAt'])
         && request.resource.data.programSlug == programSlug
         && programSlug in ['uwc', 'flex', 'lumiere', 'yygs']
         && request.resource.data.essay is string
+        && request.resource.data.essay == request.resource.data.essay.trim()
         && request.resource.data.essay.size() >= 100
-        && request.resource.data.essay.size() <= 12000;
+        && request.resource.data.essay.size() <= 12000
+        && request.resource.data.updatedAt == request.time;
     }
 
     match /users/{uid} {

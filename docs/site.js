@@ -3,17 +3,22 @@
   if(location.pathname===root){
     const flexOpen=Date.now()<Date.UTC(2026,9,23,4);
     const flexNote=flexOpen?'FLEX Global 2027–28 applications are open for Uzbekistan through October 22, 2026.':'Explore FLEX Global and check the official application for current dates.';
-    let welcome=false;
-    try{welcome=sessionStorage.getItem('relayWelcomeAfterLogin')==='1';}catch(error){}
+    const currentUrl=new URL(location.href);
+    const program=['uwc','flex','lumiere','yygs'].includes(currentUrl.searchParams.get('program'))?currentUrl.searchParams.get('program'):null;
+    let welcome=currentUrl.searchParams.get('welcome')==='1';
+    try{welcome=welcome||Boolean(sessionStorage.getItem('relayWelcomeAfterLogin'));}catch(error){}
+    const profileUrl=root+'dashboard/'+(program?'?program='+encodeURIComponent(program):'');
     const header=document.querySelector('.hero-surface > header');
     if(welcome&&header){
-      const invitation=document.createElement('section');
+      const invitation=document.createElement('div');
       invitation.className='relay-welcome';
+      invitation.setAttribute('role','region');
       invitation.setAttribute('aria-label','Your next exchange opportunity');
-      invitation.innerHTML=`<div class="relay-welcome-inner"><div class="relay-welcome-copy"><span class="relay-welcome-kicker">WELCOME TO RELAY FELLOWSHIP</span><h2>Where will you go next?</h2><p>${flexNote} Explore the exchange, or find another program that fits your goals.</p></div><div class="relay-welcome-actions"><a class="relay-welcome-primary" href="${root}programs/flex/">Explore FLEX 2027–28</a><a class="relay-welcome-secondary" href="${root}opportunities/">Explore other exchanges</a><a class="relay-welcome-profile" href="https://ais.americancouncils.org/flexglobal" target="_blank" rel="noopener noreferrer">Official FLEX application ↗</a><a class="relay-welcome-profile" href="${root}dashboard/">Complete your profile</a></div><button class="relay-welcome-close" type="button" aria-label="Dismiss welcome invitation">×</button></div>`;
+      invitation.innerHTML=`<div class="relay-welcome-inner"><div class="relay-welcome-copy"><span class="relay-welcome-kicker">WELCOME TO RELAY FELLOWSHIP</span><h2>Where will you go next?</h2><p>${flexNote} Explore the exchange, or find another program that fits your goals.</p></div><div class="relay-welcome-actions"><a class="relay-welcome-primary" href="${root}programs/flex/">Explore FLEX 2027–28</a><a class="relay-welcome-secondary" href="${root}opportunities/">Explore other exchanges</a><a class="relay-welcome-profile" href="https://ais.americancouncils.org/flexglobal" target="_blank" rel="noopener noreferrer">Official FLEX application ↗</a><a class="relay-welcome-profile" href="${profileUrl}">Complete your profile</a></div><button class="relay-welcome-close" type="button" aria-label="Dismiss welcome invitation">×</button></div>`;
       invitation.querySelector('.relay-welcome-close').addEventListener('click',()=>invitation.remove());
       header.after(invitation);
       try{sessionStorage.removeItem('relayWelcomeAfterLogin');}catch(error){}
+      if(currentUrl.searchParams.has('welcome')){currentUrl.searchParams.delete('welcome');history.replaceState(null,'',currentUrl)}
     }
   }
   const menuButton=document.querySelector('button[aria-label="Open menu"]');
