@@ -59,6 +59,9 @@ assert.throws(()=>vm.runInContext("validateAudits([{assessment:{strengths:[],wea
 ctx.badPayload={audits:[audit(sample)]};
 ctx.badPayload.audits[0].criteria.Grammar['Sentence control'].quote='invented quote';
 assert.throws(()=>vm.runInContext('validateAudits(badPayload.audits,sampleEssays)',ctx));
+ctx.contradictoryPayload={audits:[audit(sample)]};
+ctx.contradictoryPayload.audits[0].assessment.weaknesses=['The answer gives little context.'];
+assert.throws(()=>vm.runInContext('validateAudits(contradictoryPayload.audits,sampleEssays)',ctx));
 ctx.blankPayload={audits:[audit('')]};
 assert.equal(vm.runInContext("validateAudits(blankPayload.audits,[{text:''}])[0].total",ctx),0);
 const fallback=await vm.runInContext(`(async()=>{
