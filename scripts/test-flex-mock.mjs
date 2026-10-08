@@ -41,19 +41,40 @@ assert.ok(state.localEstimate>0);
 assert.match(element('#app').innerHTML,/PRELIMINARY WRITING SCORE/);
 assert.equal(vm.runInContext("structuralScore({text:''})",ctx),0);
 assert.ok(vm.runInContext("structuralScore({text:'When our team disagreed, I asked each person for their view. I learned to listen.'})",ctx)<=50);
-const reviewed=vm.runInContext(`validateReview({overallScore:999,scores:{Leadership:99},essays:[{sentenceFeedback:[{quote:'invented'}]},{},{}]},[{text:'A saved draft'},{text:''},{text:''}])`,ctx);
-assert.equal(reviewed.overallScore,100);
-assert.equal(reviewed.scores.Leadership,10);
-assert.equal(reviewed.essays[0].sentenceFeedback.length,0);
+const rubric=vm.runInContext('RUBRIC',ctx);
+assert.equal(vm.runInContext('RUBRIC_MAX',ctx),100);
+function audit(text,change){
+  const criteria=Object.fromEntries(rubric.map(criterion=>[criterion.name,Object.fromEntries(criterion.parts.map(([name,max])=>[name,{
+    points:change?.criterion===criterion.name&&change?.part===name?change.points:text?max:0,
+    quote:text?text.slice(0,8):'',reason:text?'Specific textual evidence supports or limits this point.':'No response was submitted for assessment.'
+  }]))]));
+  return {assessment:{strengths:text?['One concrete action is stated.']:[],weaknesses:[],errors:[],missingElements:text?[]:['No response']},criteria};
+}
+const sample='I organized a team.';
+ctx.sampleEssays=[{prompt:'Example',text:sample}];
+ctx.firstPayload={audits:[audit(sample)]};
+const profileKeys=['Leadership','Responsibility','Initiative','Adaptability','Maturity','Independence','Problem-solving','Community involvement','Cross-cultural readiness','Conflict handling','Teamwork','Self-awareness','Personal growth','Authenticity','Representing country','English clarity','Specificity','Reflection'];
+ctx.secondPayload={audits:[audit(sample,{criterion:'Grammar',part:'Sentence control',points:2})],review:{summary:'The response is short and needs a fuller example.',scores:Object.fromEntries(profileKeys.map(key=>[key,5])),essays:[{sentenceFeedback:[{quote:'invented'}]}]}};
+assert.throws(()=>vm.runInContext("validateAudits([{assessment:{strengths:[],weaknesses:[],errors:[],missingElements:[]},criteria:{}}],sampleEssays)",ctx));
+ctx.badPayload={audits:[audit(sample)]};
+ctx.badPayload.audits[0].criteria.Grammar['Sentence control'].quote='invented quote';
+assert.throws(()=>vm.runInContext('validateAudits(badPayload.audits,sampleEssays)',ctx));
+ctx.blankPayload={audits:[audit('')]};
+assert.equal(vm.runInContext("validateAudits(blankPayload.audits,[{text:''}])[0].total",ctx),0);
 const fallback=await vm.runInContext(`(async()=>{
-  aiModel=[{generateContent:async()=>{throw new Error('[500] This model is currently experiencing high demand')}},
-    {generateContent:async()=>({response:{text:()=>JSON.stringify({overallScore:73,scores:{Leadership:7},essays:[{}]})}})}];
-  let attempted=false;
-  const result=await requestReview([{prompt:'Example',text:'I organized a team.'}],null,()=>{attempted=true});
-  return {attempted,score:result.overallScore};
+  let failures=0,successfulCalls=0;
+  aiModel=[{generateContent:async()=>{failures++;throw new Error('[500] high demand')}},
+    {generateContent:async()=>({response:{text:()=>JSON.stringify(++successfulCalls===1?firstPayload:secondPayload)}})}];
+  const progress=[];
+  const result=await requestReview(sampleEssays,null,message=>progress.push(message));
+  return {failures,successfulCalls,progress,score:result.overallScore,changes:result.verificationChanges,invalidNotes:result.essays[0].sentenceFeedback.length};
 })()`,ctx);
-assert.equal(fallback.attempted,true);
-assert.equal(fallback.score,73);
+assert.equal(fallback.failures,2);
+assert.equal(fallback.successfulCalls,2);
+assert.equal(fallback.score,97);
+assert.equal(fallback.invalidNotes,0);
+assert.ok(fallback.changes.some(line=>line.includes('Grammar')));
+assert.ok(fallback.progress.some(line=>line.includes('verification pass')));
 vm.runInContext("archive();state={...history()[0],archived:true,review:{overallScore:73}};archive()",ctx);
 assert.equal(JSON.parse(storage.get('relay-flex-history-v1'))[0].review.overallScore,73);
-console.log('Timed rollover, preliminary score, backup model, and review validation: OK');
+console.log('Timed rollover, strict rubric arithmetic, evidence checks, independent verification, and backup model: OK');
