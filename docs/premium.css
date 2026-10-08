@@ -143,3 +143,69 @@ body.motion-ready .relay-reveal.is-visible{opacity:1;transform:translateZ(0)}
 @media(min-width:701px) and (max-width:950px){.relay-scroll-progress{left:210px}}
 @media(max-width:700px){.relay-scroll-progress{left:0}.relay-mobilebar{background:#081425e8;backdrop-filter:blur(18px);transition:box-shadow .35s var(--relay-ease)}body.relay-scrolled .relay-mobilebar{box-shadow:0 10px 25px #02081760}body[data-relay-theme] .hero-surface > section:first-of-type{padding-top:56px;padding-bottom:68px}body[data-relay-theme] .hero-surface h1{font-size:clamp(3rem,10vw,4.5rem)}body[data-relay-theme] .hero-surface::before{animation:none}body[data-relay-theme] .min-h-screen > section:first-of-type,body[data-relay-theme] .min-h-screen > section.bg-secondary\/50{padding-top:72px;padding-bottom:78px}body[data-relay-theme] .flex-banner{border-radius:17px}body[data-relay-theme] .flex-heading h1{font-size:clamp(2.8rem,9vw,4rem)}body[data-relay-theme] .flex-primary .flex-panel:hover,body[data-relay-theme] .program-card:hover,body[data-relay-theme] .home-program-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}body[data-relay-theme] *,body[data-relay-theme] *::before,body[data-relay-theme] *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}body.motion-ready .relay-reveal{opacity:1!important;transform:none!important}}
+
+/* Reduced content space beside the tablet sidebar. */
+@media (min-width:701px) and (max-width:1100px){
+  body[data-relay-theme] #app .hero,
+  body[data-relay-theme] #app .review-grid,
+  body[data-relay-theme] .detail-hero-grid,
+  body[data-relay-theme] .program-grid,
+  body[data-relay-theme] .hero-surface > section:first-of-type{grid-template-columns:minmax(0,1fr)}
+  body[data-relay-theme] .filter-grid,
+  body[data-relay-theme] .experience-grid,
+  body[data-relay-theme] .timeline,
+  body[data-relay-theme] .hero-surface .mt-10.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body[data-relay-theme] .min-h-screen > footer .grid{grid-template-columns:minmax(0,1fr)}
+  body[data-relay-theme] #app .metric{grid-template-columns:minmax(130px,190px) minmax(0,1fr) 45px}
+}
+@media (max-width:700px){
+  .relay-mobilebar{min-height:58px}
+  .relay-mobilebar .relay-side-brand{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .relay-mobilebar .relay-mobile-register,
+  .relay-mobilebar summary{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .relay-mobilebar nav{max-height:calc(100dvh - 70px);overflow-y:auto;overscroll-behavior:contain}
+  body[data-relay-theme] #app .hero,
+  body[data-relay-theme] #app .review-grid{grid-template-columns:minmax(0,1fr)}
+  body[data-relay-theme] #app .hero h1{font-size:clamp(2.25rem,9vw,3.5rem)}
+  body[data-relay-theme] #app .hero-panel,
+  body[data-relay-theme] #app .mode-card,
+  body[data-relay-theme] #app .panel,
+  body[data-relay-theme] #app .review-card{min-width:0}
+  body[data-relay-theme] #app .history-row{align-items:stretch;flex-direction:column;gap:12px}
+  body[data-relay-theme] #app .history-row .button{width:100%;white-space:normal}
+  body[data-relay-theme] #app .review-head h1{font-size:clamp(2rem,8vw,2.7rem)}
+  body[data-relay-theme] #app .review-head .estimate{width:100%}
+  body[data-relay-theme] #app .metric,
+  body[data-relay-theme] #app .section .panel .metric{
+    grid-template-columns:minmax(85px,38%) minmax(0,1fr) auto;
+    gap:8px;font-size:.78rem
+  }
+  body[data-relay-theme] #app .metric span:first-child{overflow-wrap:break-word}
+  body[data-relay-theme] #app .section .panel .metric strong{font-size:.72rem}
+  body[data-relay-theme] #app .review-card,
+  body[data-relay-theme] #app .analysis-row,
+  body[data-relay-theme] #app .essay-text{overflow-wrap:break-word}
+  body[data-relay-theme] .signup-card input:not([type=checkbox]),
+  body[data-relay-theme] .signup-card select,
+  body[data-relay-theme] .signup-card textarea{font-size:16px}
+  body[data-relay-theme] .signup-intro h1,
+  body[data-relay-theme] .catalog-head h1,
+  body[data-relay-theme] .detail-hero h1,
+  body[data-relay-theme] .collection-hero h1,
+  body[data-relay-theme] .min-h-screen > main h1{font-size:clamp(2.25rem,9vw,3.2rem)}
+  body[data-relay-theme] .hero-surface h1{font-size:clamp(2.3rem,9vw,3.5rem)}
+  body[data-relay-theme] .detail-photo img,
+  body[data-relay-theme] .detail-art{max-width:100%;height:auto;min-height:220px}
+}
+@media (max-width:380px){
+  body[data-relay-theme] #app .exam-top{display:grid;grid-template-columns:minmax(0,1fr) auto}
+  body[data-relay-theme] #app .timer-box{min-width:96px}
+  body[data-relay-theme] #app .exam-top h1{font-size:1.25rem}
+  body[data-relay-theme] #app .prompt{font-size:1.15rem}
+  body[data-relay-theme] #app .writing-box{padding:15px}
+  body[data-relay-theme] .relay-mobilebar{gap:6px;padding:7px 9px}
+  body[data-relay-theme] .relay-mobilebar .relay-mobile-register{padding:8px;font-size:.7rem}
+}
+@media (max-width:700px) and (max-height:550px){
+  body[data-relay-theme] #app .writing-box{min-height:260px}
+}
