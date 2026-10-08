@@ -236,9 +236,15 @@ function recoverableReviewError(error){return transientReviewError(error)||/quot
 async function generateReviewJSON(models,instruction,validate,onFallback){
   for(let i=0;i<models.length;i++){
     try{
-      const result=await timedReview(models[i].generateContent(instruction),i===0?45000:60000);
-      const raw=result.response.text().trim().replace(/^```(?:json)?\s*|\s*```$/g,'');
-      return validate(JSON.parse(raw));
+      let prompt=instruction;
+      for(let attempt=0;attempt<2;attempt++){
+        const result=await timedReview(models[i].generateContent(prompt),i===0?45000:60000);
+        const raw=result.response.text().trim().replace(/^```(?:json)?\s*|\s*```$/g,'');
+        try{return validate(JSON.parse(raw))}catch(error){
+          if(attempt===1||!recoverableReviewError(error))throw error;
+          prompt=`${instruction}\n\nYour previous response failed validation: ${error.message}. Re-evaluate against the original essay and return complete JSON. Every positive-point component needs a literal, contiguous quote copied exactly from that essay. If evidence is absent, use an empty quote and award zero. Keep the response concise and include every required field.`;
+        }
+      }
     }catch(error){
       if(i===models.length-1||!recoverableReviewError(error))throw error;
       onFallback();

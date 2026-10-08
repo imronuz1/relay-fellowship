@@ -75,6 +75,14 @@ assert.equal(fallback.score,97);
 assert.equal(fallback.invalidNotes,0);
 assert.ok(fallback.changes.some(line=>line.includes('Grammar')));
 assert.ok(fallback.progress.some(line=>line.includes('verification pass')));
+const corrected=await vm.runInContext(`(async()=>{
+  let calls=0;
+  aiModel=[{generateContent:async prompt=>({response:{text:()=>JSON.stringify(++calls===1?badPayload:calls===2?firstPayload:secondPayload)}})}];
+  const result=await requestReview(sampleEssays);
+  return {calls,score:result.overallScore};
+})()`,ctx);
+assert.equal(corrected.calls,3);
+assert.equal(corrected.score,97);
 vm.runInContext("archive();state={...history()[0],archived:true,review:{overallScore:73}};archive()",ctx);
 assert.equal(JSON.parse(storage.get('relay-flex-history-v1'))[0].review.overallScore,73);
-console.log('Timed rollover, strict rubric arithmetic, evidence checks, independent verification, and backup model: OK');
+console.log('Timed rollover, rubric arithmetic, evidence checks, correction, independent verification, and backup model: OK');
