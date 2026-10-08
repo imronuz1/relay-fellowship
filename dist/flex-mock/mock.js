@@ -49,6 +49,34 @@ const PROMPTS = [
   ['School contribution','Describe how you would join a school activity where you knew nobody.']
 ];
 
+// Original practice prompts based on the recurring themes in the student's reference lists.
+const CORE_PROMPTS = [
+  ['Responsibility','Think of a responsibility you initially wished someone else would take. How did you handle it, and what changed your attitude?'],
+  ['Host family','As a member of a host household, how would you take part in everyday family life rather than wait to be treated as a visitor?'],
+  ['Self-awareness','Which experiences and qualities would you want an exchange selection reader to understand about you? Give examples.'],
+  ['Growth','Describe an event in the last two years that changed how you think or act. What did you learn from it?'],
+  ['Learning outside school','What did you learn outside the classroom in recent years that would help you during an exchange year?'],
+  ['Adaptability','Tell about trying something unfamiliar that went differently from your plan. What did you do next?'],
+  ['Cross-cultural teamwork','Describe working with someone whose background or habits differed from yours. How did you work together, and what did you learn?'],
+  ['Exchange readiness','Which of your habits or strengths would help you adjust to a host family and a new school? Show where you developed them.'],
+  ['Belonging','Recall a time you felt out of place in a group. What did you do, and what happened afterward?'],
+  ['Meaningful activity','Which activity outside your classes has influenced you most in the last three years? Explain how.'],
+  ['New tasks','When you were asked to do something you had never done, how did you learn to do it?'],
+  ['Personal change','What is one important way you have changed in the past three years? What caused the change?'],
+  ['Conflict','Describe a misunderstanding with a friend or family member. How did you address your part in it?'],
+  ['Resilience','Describe a difficult period you worked through. Which actions helped you move forward?'],
+  ['Independence','Tell about an important decision you had to make on your own. How did you decide?'],
+  ['Achievements','Which achievement outside school matters to you most, and what did the work behind it teach you?'],
+  ['Unexpected change','Describe an experience outside school that did not go as you expected. How did you respond?'],
+  ['Host family','Suppose your host family asks you to help at home when friends invite you out. How would you handle both commitments?'],
+  ['Host family','Suppose a host parent packs a lunch you do not enjoy. How would you respond respectfully and honestly?'],
+  ['Friendship','Tell about a friendship that changed or ended. What did you do, and what do you understand differently now?'],
+  ['Boundaries','Tell about a time a close friend asked you to do something you were uncomfortable with. What did you say or do?'],
+  ['Persistence','Recall a project you nearly abandoned. Why did you continue or stop, and what did you learn?'],
+  ['Learning from advice','Describe advice you dismissed but later reconsidered. How did your behavior change?'],
+  ['Culture','What do you hope to learn in the United States beyond improving your English? How would you share your own culture in return?']
+];
+
 const ACTIVE_KEY='relay-flex-active-v1';
 const HISTORY_KEY='relay-flex-history-v1';
 const APP_CHECK_SITE_KEY='6LdZxuEtAAAAAMZEteGiQCSYC4DsG96-iiapJtAs';
@@ -58,8 +86,10 @@ const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fa
 const history=()=>read(HISTORY_KEY,[]);
 const save=()=>localStorage.setItem(ACTIVE_KEY,JSON.stringify(state));
 const choose=count=>{
+  // Full tests use the reference themes; occasional practice prompts broaden coverage.
+  const pool=count>1||Math.random()<.9?CORE_PROMPTS:PROMPTS;
   const byTheme=new Map();
-  for(const item of PROMPTS){if(!byTheme.has(item[0]))byTheme.set(item[0],[]);byTheme.get(item[0]).push(item)}
+  for(const item of pool){if(!byTheme.has(item[0]))byTheme.set(item[0],[]);byTheme.get(item[0]).push(item)}
   const themes=[...byTheme.keys()];
   for(let i=themes.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[themes[i],themes[j]]=[themes[j],themes[i]]}
   themes.length=count;

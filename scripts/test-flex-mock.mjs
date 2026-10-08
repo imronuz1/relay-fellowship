@@ -18,6 +18,7 @@ vm.runInContext("start('full')",ctx);
 let state=JSON.parse(storage.get('relay-flex-active-v1'));
 assert.equal(state.essays.length,3);
 assert.equal(new Set(state.prompts).size,3);
+assert.ok(state.prompts.every(prompt=>vm.runInContext('CORE_PROMPTS',ctx).some(item=>item[1]===prompt)));
 state.essays[0].text='A saved draft';
 state.deadline=Date.now()-29*60*1000;
 storage.set('relay-flex-active-v1',JSON.stringify(state));
