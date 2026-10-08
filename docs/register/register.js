@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
-import { getAuth, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailLink, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+import { browserLocalPersistence, getAuth, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, setPersistence, signInWithEmailLink, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
 import { doc, getDoc, getFirestore, serverTimestamp, writeBatch } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
 import { firebaseConfig } from '../firebase-config.js';
 
@@ -12,11 +12,23 @@ const programInfo = {
   yygs: {prompt:'YYGS brings students together for interdisciplinary learning and global discussion. Paste your essay about a question or challenge you would explore with peers.',url:'https://globalscholars.yale.edu/'}
 };
 const siteRoot = new URL('../', import.meta.url);
+const dashboardPath = new URL('dashboard/',siteRoot).pathname;
+const isDashboard = location.pathname.replace(/\/?$/,'/')===dashboardPath;
 const params = new URLSearchParams(location.search);
 const requestedProgram = params.get('program');
 const emailKey = 'relayEmailForSignIn';
 let auth, db, currentUser;
 let accountMode='signup';
+let completingEmailLink=false;
+let navigating=false;
+
+function route(name){
+  if(navigating)return;
+  navigating=true;
+  const url=new URL(name+'/',siteRoot);
+  if(programInfo[requestedProgram])url.searchParams.set('program',requestedProgram);
+  location.replace(url.href);
+}
 
 function panel(id){for(const name of panels)$(name).hidden=name!==id;}
 function status(message,error=false){const el=$('status');el.textContent=message;el.classList.toggle('error',error);el.hidden=false;}
@@ -69,13 +81,15 @@ async function showProfile(user){
 async function finishEmail(email){
   const button=$('confirm-email-form').querySelector('button');setBusy(button,true);clearStatus();
   try{
+    await setPersistence(auth,browserLocalPersistence);
     await signInWithEmailLink(auth,email,location.href);
     localStorage.removeItem(emailKey);
-    const url=new URL('register/',siteRoot);
-    const program=$('program').value||requestedProgram;
-    if(programInfo[program])url.searchParams.set('program',program);
-    history.replaceState(null,'',url);
-  }catch(error){status(describeError(error),true);}
+    const cleanUrl=new URL('register/',siteRoot);
+    if(programInfo[requestedProgram])cleanUrl.searchParams.set('program',requestedProgram);
+    history.replaceState(null,'',cleanUrl);
+    completingEmailLink=false;
+    route('dashboard');
+  }catch(error){completingEmailLink=false;status(describeError(error),true);}
   finally{setBusy(button,false);}
 }
 
@@ -105,11 +119,18 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
   $('confirm-email-form').addEventListener('submit',event=>{event.preventDefault();finishEmail($('confirm-address').value.trim());});
   $('google-button').addEventListener('click',async()=>{
     clearStatus();setBusy($('google-button'),true);
-    try{await signInWithPopup(auth,new GoogleAuthProvider());}
+    try{
+      await setPersistence(auth,browserLocalPersistence);
+      const result=await signInWithPopup(auth,new GoogleAuthProvider());
+      if(result.user)route('dashboard');
+    }
     catch(error){status(describeError(error),true);}
     finally{setBusy($('google-button'),false);}
   });
-  $('sign-out').addEventListener('click',async()=>{await signOut(auth);clearStatus();panel('account-panel');});
+  $('sign-out').addEventListener('click',async()=>{
+    try{await signOut(auth);currentUser=null;route('register');}
+    catch(error){status(describeError(error),true);}
+  });
   $('program').addEventListener('change',()=>{updateProgram();loadEssay($('program').value);$('save-success').hidden=true;});
   $('profile-form').addEventListener('submit',async event=>{
     event.preventDefault();clearStatus();$('save-success').hidden=true;
@@ -131,13 +152,20 @@ if(!firebaseConfig.apiKey||!firebaseConfig.authDomain||!firebaseConfig.projectId
     }catch(error){status(describeError(error),true);}
     finally{setBusy(button,false);}
   });
-  if(isSignInWithEmailLink(auth,location.href)){
+  completingEmailLink=isSignInWithEmailLink(auth,location.href);
+  if(completingEmailLink){
     const storedEmail=localStorage.getItem(emailKey);
     if(storedEmail)finishEmail(storedEmail);
     else panel('confirm-email');
-  }else panel('account-panel');
+  }
   onAuthStateChanged(auth,user=>{
-    if(user)showProfile(user);
-    else if(!isSignInWithEmailLink(auth,location.href)&&$('email-sent').hidden&&$('auth-panel').hidden)panel('account-panel');
-  });
+    currentUser=user;
+    if(user){
+      if(completingEmailLink)return;
+      if(isDashboard)showProfile(user);
+      else route('dashboard');
+    }else if(isDashboard)route('register');
+    else if(!completingEmailLink&&$('email-sent').hidden&&$('auth-panel').hidden)panel('account-panel');
+  },error=>status(describeError(error),true));
 }
+

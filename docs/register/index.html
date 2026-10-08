@@ -24,14 +24,15 @@
         <div class="signup-route" aria-label="Registration steps"><div><strong>01</strong><span>Open your account</span></div><div><strong>02</strong><span>Sign up or sign in with email or Google</span></div><div><strong>03</strong><span>Answer the questions and save your essay</span></div></div>
         <p class="signup-note">A Relay profile is a preparation space. It does not submit an application to a program.</p>
       </section>
-      <section class="signup-card" aria-label="Relay account and student questions">
+      <section class="signup-card" aria-label="Rellay Fellowship account and student questions">
         <div id="status" class="status" role="status" aria-live="polite" hidden></div>
         <div id="setup-pending" class="setup-pending" hidden><h2>Registration is being connected</h2><p>The form is ready. We are connecting secure sign-in and private profile storage before opening registration.</p></div>
         <div id="account-panel" hidden>
-          <p class="step-label">STEP 1 OF 3 · OPEN ACCOUNT</p><h2>Open your Relay account</h2><p class="panel-intro">Choose how to continue. New students can sign up; returning students can sign in to their saved answers.</p>
+          <p class="step-label">STEP 1 OF 3 · OPEN ACCOUNT</p><h2>Open your Rellay Fellowship account</h2><p class="panel-intro">Choose how to continue. New students can sign up; returning students can sign in to their saved answers.</p>
           <div class="account-choices"><button id="choose-sign-up" class="signup-primary" type="button">Sign up</button><button id="choose-sign-in" class="account-secondary" type="button">Sign in</button></div>
         </div>
         <div id="auth-panel" hidden>
+          <div class="auth-brand"><img src="/relay-fellowship/media/relay-logo.jpg" alt="Rellay Fellowship Logo" width="48" height="48"><span>Rellay Fellowship</span></div>
           <p class="step-label">STEP 2 OF 3 · SECURE ACCESS</p><h2 id="auth-title">Sign up</h2><p class="panel-intro">We’ll send a sign-in link to the address you enter. You won’t need a password.</p>
           <form id="email-form"><label for="email">Email address</label><input id="email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"><button class="signup-primary" type="submit">Send sign-in link</button></form>
           <div class="auth-divider"><span>or</span></div>
@@ -59,3 +60,4 @@
   <script type="module" src="/relay-fellowship/register/register.js"></script>
 <script src="/relay-fellowship/premium.js?v=3" defer></script></body>
 </html>
+
