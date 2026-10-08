@@ -53,4 +53,6 @@ const fallback=await vm.runInContext(`(async()=>{
 })()`,ctx);
 assert.equal(fallback.attempted,true);
 assert.equal(fallback.score,73);
+vm.runInContext("archive();state={...history()[0],archived:true,review:{overallScore:73}};archive()",ctx);
+assert.equal(JSON.parse(storage.get('relay-flex-history-v1'))[0].review.overallScore,73);
 console.log('Timed rollover, preliminary score, backup model, and review validation: OK');
