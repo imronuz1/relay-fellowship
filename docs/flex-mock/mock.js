@@ -232,7 +232,7 @@ async function timedReview(promise,limit){
   try{return await Promise.race([promise,timeout])}finally{clearTimeout(timeoutId)}
 }
 function transientReviewError(error){return /did not respond|\b500\b|\b503\b|high demand|temporarily unavailable|unavailable/i.test(error?.message||'')}
-function recoverableReviewError(error){return transientReviewError(error)||error instanceof SyntaxError||/^The AI (response|scoring|evidence|omitted|returned|competency|essay)/.test(error?.message||'')}
+function recoverableReviewError(error){return transientReviewError(error)||/quota|resource.exhausted|\b429\b/i.test(error?.message||'')||error instanceof SyntaxError||/^The AI (response|scoring|evidence|omitted|returned|competency|essay)/.test(error?.message||'')}
 async function generateReviewJSON(models,instruction,validate,onFallback){
   for(let i=0;i<models.length;i++){
     try{
@@ -320,12 +320,13 @@ function validateReview(review,essays){
 }
 async function loadReview(){
   const button=$('#view-review');button.disabled=true;
+  document.querySelectorAll('.loading').forEach(node=>node.remove());
   const status=document.createElement('div');status.className='loading';status.innerHTML='<span class="spinner"></span><span>Reading your essays and preparing specific feedback…</span>';button.after(status);
   try{
     currentReview=await requestReview(state.essays,state.retryOriginalText,message=>{status.querySelector('span:last-child').textContent=message});
     state.review=currentReview;state.status='review';save();archive();render();
   }catch(error){
-    const detail=/timed out|did not respond/i.test(error?.message||'')?error.message:/quota|resource.exhausted|429/i.test(error?.message||'')?'The AI service is at capacity. Try again later.':/app.check|recaptcha|permission|403/i.test(error?.message||'')?'The AI service could not verify this browser. Try again later or contact Relay.':error?.message||'Connection error';
+    const detail=/timed out|did not respond/i.test(error?.message||'')?error.message:/quota|resource.exhausted|429/i.test(error?.message||'')?'The AI service has reached its request limit. Try again later.':/app.check|recaptcha|permission|403/i.test(error?.message||'')?'The AI service could not verify this browser. Try again later or contact Relay.':error?.message||'Connection error';
     status.innerHTML=`<p>AI review is unavailable right now. Your essay and preliminary writing score remain saved in this browser. You can retry the AI review. <small>${esc(detail)}</small></p>`;
     button.disabled=false;
   }
