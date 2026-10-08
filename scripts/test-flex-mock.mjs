@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+
+const source=fs.readFileSync(new URL('./mock.js',import.meta.url),'utf8');
+const storage=new Map();
+const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
+const elements=new Map();
+function element(selector){
+  if(!elements.has(selector))elements.set(selector,{innerHTML:'',textContent:'',value:'',disabled:false,classList:{toggle(){}},after(){},focus(){}});
+  return elements.get(selector);
+}
+const document={querySelector:element,querySelectorAll:()=>[],createElement:()=>({innerHTML:'',className:'',after(){}})};
+const sandbox={document,localStorage,crypto:{randomUUID:()=>String(Math.random())},setInterval:()=>1,clearInterval(){},Date,Math,JSON,console};
+const ctx=vm.createContext(sandbox);
+vm.runInContext(source,ctx);
+vm.runInContext("start('full')",ctx);
+let state=JSON.parse(storage.get('relay-flex-active-v1'));
+assert.equal(state.essays.length,3);
+assert.equal(new Set(state.prompts).size,3);
+state.essays[0].text='A saved draft';
+state.deadline=Date.now()-29*60*1000;
+storage.set('relay-flex-active-v1',JSON.stringify(state));
+vm.runInContext('state=read(ACTIVE_KEY,null);render()',ctx);
+state=JSON.parse(storage.get('relay-flex-active-v1'));
+assert.equal(state.status,'writing');
+assert.equal(state.index,2);
+assert.equal(state.essays[0].text,'A saved draft');
+assert.equal(state.essays[0].expired,true);
+assert.equal(state.essays[1].expired,true);
+assert.ok(state.deadline>Date.now());
+state.deadline=Date.now()-1000;
+storage.set('relay-flex-active-v1',JSON.stringify(state));
+vm.runInContext('state=read(ACTIVE_KEY,null);submitCurrent(false)',ctx);
+state=JSON.parse(storage.get('relay-flex-active-v1'));
+assert.equal(state.status,'complete');
+assert.equal(state.essays[2].expired,true);
+const reviewed=vm.runInContext(`validateReview({overallScore:999,scores:{Leadership:99},essays:[{sentenceFeedback:[{quote:'invented'}]},{},{}]},[{text:'A saved draft'},{text:''},{text:''}])`,ctx);
+assert.equal(reviewed.overallScore,100);
+assert.equal(reviewed.scores.Leadership,10);
+assert.equal(reviewed.essays[0].sentenceFeedback.length,0);
+console.log('Timed rollover, saved draft, manual expiry guard, and review validation: OK');
